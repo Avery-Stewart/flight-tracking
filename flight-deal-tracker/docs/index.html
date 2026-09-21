@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ATL Flight Deals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E1621;
+    --panel: #131E2B;
+    --line: #22303F;
+    --text: #E7ECF2;
+    --muted: #8CA0B3;
+    --accent: #F2A93B;
+    --accent-dim: #4A3A1E;
+    --intl: #5FB3B3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+  header {
+    padding: 32px 20px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .route {
+    font-size: clamp(28px, 6vw, 40px);
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .route .arrow { color: var(--muted); font-weight: 400; margin: 0 10px; }
+  .meta {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .meta .count { color: var(--accent); font-weight: 600; }
+
+  .filters {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 14px 20px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+  }
+  .filters input[type="text"],
+  .filters input[type="number"],
+  .filters input[type="date"],
+  .filters select {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-family: inherit;
+    font-size: 14px;
+  }
+  .filters label {
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  #search { width: 200px; }
+  .price-field { width: 90px; }
+  .date-field { width: 140px; }
+  .spacer { flex: 1; }
+  #clear {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  #clear:hover { color: var(--text); border-color: var(--muted); }
+
+  main { padding: 0 20px 60px; max-width: 900px; margin: 0 auto; }
+
+  .row {
+    display: grid;
+    grid-template-columns: 64px 1fr auto auto;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--line);
+    border-left: 3px solid transparent;
+  }
+  .row.deal { border-left-color: var(--accent); background: rgba(242, 169, 59, 0.04); }
+  .row .code { color: var(--muted); font-size: 13px; }
+  .row .city { font-weight: 500; }
+  .row .country { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .row .dates { color: var(--muted); font-size: 13px; text-align: right; }
+  .row .price { font-size: 18px; font-weight: 600; text-align: right; }
+  .row .price .badge {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  .empty strong { color: var(--text); display: block; margin-bottom: 6px; font-size: 16px; }
+
+  footer {
+    text-align: center;
+    padding: 24px 20px 40px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  @media (max-width: 520px) {
+    .row { grid-template-columns: 1fr auto; grid-template-areas: "city price" "dates dates"; }
+    .row .code { display: none; }
+    .row .dates { grid-area: dates; text-align: left; margin-top: 4px; }
+    .row .price { grid-area: price; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 class="route">ATL<span class="arrow">&rarr;</span>Anywhere</h1>
+  <div class="meta" id="meta">Loading latest scan&hellip;</div>
+</header>
+
+<div class="filters">
+  <input type="text" id="search" placeholder="Search a city or airport code">
+  <select id="region">
+    <option value="all">All regions</option>
+    <option value="domestic">Domestic only</option>
+    <option value="international">International only</option>
+  </select>
+  <label>Under $<input type="number" id="maxPrice" class="price-field" placeholder="any"></label>
+  <label>From <input type="date" id="dateFrom" class="date-field"></label>
+  <label>To <input type="date" id="dateTo" class="date-field"></label>
+  <label><input type="checkbox" id="dealsOnly"> Deals only</label>
+  <select id="sort">
+    <option value="smart">Sort: best first</option>
+    <option value="price">Sort: price, low to high</option>
+    <option value="percent">Sort: % off, high to low</option>
+    <option value="city">Sort: city name</option>
+  </select>
+  <div class="spacer"></div>
+  <button id="clear">Clear filters</button>
+</div>
+
+<main>
+  <div id="list"></div>
+</main>
+
+<footer id="footer"></footer>
+
+<script>
+let ALL_DEALS = [];
+let GENERATED_AT = null;
+
+async function load() {
+  try {
+    const res = await fetch('data/deals.json', { cache: 'no-store' });
+    const data = await res.json();
+    ALL_DEALS = data.deals || [];
+    GENERATED_AT = data.generated_at;
+  } catch (e) {
+    ALL_DEALS = [];
+    GENERATED_AT = null;
+  }
+  render();
+}
+
+function timeAgo(iso) {
+  if (!iso) return 'never';
+  const diffMs = Date.now() - new Date(iso).getTime();
+  const hours = Math.floor(diffMs / 3600000);
+  if (hours < 1) return 'less than an hour ago';
+  if (hours < 24) return hours + (hours === 1 ? ' hour ago' : ' hours ago');
+  const days = Math.floor(hours / 24);
+  return days + (days === 1 ? ' day ago' : ' days ago');
+}
+
+function applyFilters() {
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  const region = document.getElementById('region').value;
+  const maxPrice = parseFloat(document.getElementById('maxPrice').value);
+  const dateFrom = document.getElementById('dateFrom').value;
+  const dateTo = document.getElementById('dateTo').value;
+  const dealsOnly = document.getElementById('dealsOnly').checked;
+  const sort = document.getElementById('sort').value;
+
+  let rows = ALL_DEALS.filter(d => {
+    if (q && !(d.city.toLowerCase().includes(q) || d.destination.toLowerCase().includes(q) || d.country.toLowerCase().includes(q))) return false;
+    if (region === 'domestic' && !d.domestic) return false;
+    if (region === 'international' && d.domestic) return false;
+    if (!isNaN(maxPrice) && d.price > maxPrice) return false;
+    if (dateFrom && d.departure_date && d.departure_date < dateFrom) return false;
+    if (dateTo && d.departure_date && d.departure_date > dateTo) return false;
+    if (dealsOnly && !d.deal) return false;
+    return true;
+  });
+
+  if (sort === 'price') {
+    rows.sort((a, b) => a.price - b.price);
+  } else if (sort === 'percent') {
+    rows.sort((a, b) => (b.percent_off || -999) - (a.percent_off || -999));
+  } else if (sort === 'city') {
+    rows.sort((a, b) => a.city.localeCompare(b.city));
+  } else {
+    rows.sort((a, b) => (b.deal - a.deal) || (a.price - b.price));
+  }
+
+  return rows;
+}
+
+function render() {
+  const rows = applyFilters();
+  const list = document.getElementById('list');
+  const flaggedTotal = ALL_DEALS.filter(d => d.deal).length;
+
+  document.getElementById('meta').innerHTML =
+    `<span class="count">${flaggedTotal}</span> deal${flaggedTotal === 1 ? '' : 's'} flagged right now &middot; last scanned ${timeAgo(GENERATED_AT)}`;
+
+  if (rows.length === 0) {
+    list.innerHTML = ALL_DEALS.length === 0
+      ? `<div class="empty"><strong>No scans yet</strong>The first automated scan will populate this list. If you don't want to wait, trigger one manually from the repo's Actions tab.</div>`
+      : `<div class="empty"><strong>Nothing matches those filters</strong>Try widening the price, dates, or region.</div>`;
+    return;
+  }
+
+  list.innerHTML = rows.map(d => `
+    <div class="row ${d.deal ? 'deal' : ''}">
+      <div class="code mono">${d.destination}</div>
+      <div>
+        <div class="city">${d.city}</div>
+        <div class="country">${d.country}</div>
+      </div>
+      <div class="dates mono">${d.departure_date || ''}${d.return_date ? ' &ndash; ' + d.return_date : ''}</div>
+      <div class="price mono">$${Math.round(d.price)}
+        ${d.deal ? `<span class="badge">${d.percent_off ? d.percent_off + '% off' : 'under cap'}</span>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+document.querySelectorAll('.filters input, .filters select').forEach(el => el.addEventListener('input', render));
+document.getElementById('clear').addEventListener('click', () => {
+  document.getElementById('search').value = '';
+  document.getElementById('region').value = 'all';
+  document.getElementById('maxPrice').value = '';
+  document.getElementById('dateFrom').value = '';
+  document.getElementById('dateTo').value = '';
+  document.getElementById('dealsOnly').checked = false;
+  document.getElementById('sort').value = 'smart';
+  render();
+});
+
+load();
+</script>
+</body>
+</html>

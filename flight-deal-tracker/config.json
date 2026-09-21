@@ -1,0 +1,14 @@
+{
+  "origin": "ATL",
+  "percent_off_threshold": 40,
+  "domestic_price_cap": 150,
+  "international_price_cap": 400,
+  "min_history_points": 5,
+  "re_alert_after_days": 14,
+  "re_alert_price_drop_ratio": 0.95,
+  "search_lead_days": 3,
+  "search_window_days": 60,
+  "round_trip": true,
+  "trip_duration_days": 6,
+  "seconds_between_requests": 1.5
+}
