@@ -1,1 +1,6 @@
 flights
+pydantic
+curl_cffi
+httpx
+typer
+rich
