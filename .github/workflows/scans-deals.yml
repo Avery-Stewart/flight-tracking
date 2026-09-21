@@ -1,0 +1,44 @@
+name: Scan flight deals
+
+on:
+  schedule:
+    # Twice a day. fli (Google Flights) is free with no request quota to
+    # manage, but this list checks ~70 destinations one at a time, so
+    # running less often than Amadeus did keeps each run polite and quick.
+    - cron: "0 */12 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scanner
+        env:
+          SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_SENDER: ${{ secrets.SMTP_SENDER }}
+          SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
+          ALERT_RECIPIENTS: ${{ secrets.ALERT_RECIPIENTS }}
+        run: python scripts/scan_deals.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "flight-deal-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/data/*.json
+          git diff --quiet --cached || git commit -m "Update flight deals $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
