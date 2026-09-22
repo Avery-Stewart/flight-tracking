@@ -6,277 +6,862 @@
 <title>ATL Flight Deals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0E1621;
-    --panel: #131E2B;
-    --line: #22303F;
-    --text: #E7ECF2;
-    --muted: #8CA0B3;
-    --accent: #F2A93B;
-    --accent-dim: #4A3A1E;
-    --intl: #5FB3B3;
+    --bg: #F6F7F9;
+    --surface: #FFFFFF;
+    --border: #E5E7EB;
+    --text: #111827;
+    --muted: #6B7280;
+    --faint: #9CA3AF;
+    --accent: #4F46E5;
+    --accent-soft: #EEF2FF;
+    --green: #10B981;
+    --green-soft: #ECFDF5;
+    --amber: #F59E0B;
+    --red: #EF4444;
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(17,24,39,.04), 0 4px 16px rgba(17,24,39,.06);
+    --shadow-hover: 0 2px 4px rgba(17,24,39,.06), 0 12px 28px rgba(17,24,39,.10);
   }
   * { box-sizing: border-box; }
+  html, body { margin: 0; }
   body {
-    margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
+    font-size: 15px;
   }
-  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  button { font-family: inherit; }
+  a { color: inherit; }
+  .num { font-variant-numeric: tabular-nums; }
+  [hidden] { display: none !important; }
 
-  header {
-    padding: 32px 20px 20px;
-    border-bottom: 1px solid var(--line);
+  /* ---------- Top nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: saturate(1.4) blur(8px);
+    border-bottom: 1px solid var(--border);
   }
-  .route {
-    font-size: clamp(28px, 6vw, 40px);
-    font-weight: 600;
-    margin: 0;
-    letter-spacing: -0.01em;
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 28px;
+    height: 64px; display: flex; align-items: center; gap: 28px;
   }
-  .route .arrow { color: var(--muted); font-weight: 400; margin: 0 10px; }
-  .meta {
-    margin-top: 8px;
-    color: var(--muted);
-    font-size: 14px;
+  .brand { font-weight: 800; font-size: 18px; letter-spacing: -.02em; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .brand-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 15px; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted); font-weight: 500;
+    padding: 8px 14px; border-radius: 8px;
   }
-  .meta .count { color: var(--accent); font-weight: 600; }
+  .nav-links a.active { color: var(--text); background: var(--bg); }
+  .nav-links a:hover { color: var(--text); }
+  .status {
+    margin-left: auto; font-size: 13px; color: var(--muted);
+    display: flex; align-items: center; gap: 8px; white-space: nowrap;
+  }
+  .status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px var(--green-soft); }
+  .status .dot.stale { background: var(--amber); box-shadow: 0 0 0 3px #FFFBEB; }
+  .status b { color: var(--text); font-weight: 600; }
 
-  .filters {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-    padding: 14px 20px;
-    background: var(--panel);
-    border-bottom: 1px solid var(--line);
-  }
-  .filters input[type="text"],
-  .filters input[type="number"],
-  .filters input[type="date"],
-  .filters select {
-    background: var(--bg);
-    border: 1px solid var(--line);
-    color: var(--text);
-    border-radius: 6px;
-    padding: 8px 10px;
-    font-family: inherit;
-    font-size: 14px;
-  }
-  .filters label {
-    font-size: 13px;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-  }
-  #search { width: 200px; }
-  .price-field { width: 90px; }
-  .date-field { width: 140px; }
-  .spacer { flex: 1; }
-  #clear {
-    background: transparent;
-    border: 1px solid var(--line);
-    color: var(--muted);
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-size: 13px;
-    cursor: pointer;
-  }
-  #clear:hover { color: var(--text); border-color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
 
-  main { padding: 0 20px 60px; max-width: 900px; margin: 0 auto; }
-
-  .row {
-    display: grid;
-    grid-template-columns: 64px 1fr auto auto;
-    gap: 16px;
-    align-items: center;
-    padding: 14px 12px;
-    border-bottom: 1px solid var(--line);
-    border-left: 3px solid transparent;
+  /* ---------- Hero ---------- */
+  .hero { padding: 44px 0 8px; }
+  .hero h1 { font-size: clamp(30px, 4vw, 44px); letter-spacing: -.03em; margin: 0 0 10px; font-weight: 800; }
+  .hero p { color: var(--muted); margin: 0; font-size: 16px; }
+  .home-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 6px 12px 6px 6px; border-radius: 999px; font-size: 13px; font-weight: 500;
+    margin-bottom: 18px;
   }
-  .row.deal { border-left-color: var(--accent); background: rgba(242, 169, 59, 0.04); }
-  .row .code { color: var(--muted); font-size: 13px; }
-  .row .city { font-weight: 500; }
-  .row .country { color: var(--muted); font-size: 13px; margin-top: 2px; }
-  .row .dates { color: var(--muted); font-size: 13px; text-align: right; }
-  .row .price { font-size: 18px; font-weight: 600; text-align: right; }
-  .row .price .badge {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--accent);
-    margin-top: 2px;
-  }
+  .home-chip .code { background: var(--accent); color: #fff; font-weight: 700; padding: 3px 9px; border-radius: 999px; font-size: 12px; }
 
-  .empty {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--muted);
+  /* ---------- Toolbar ---------- */
+  .toolbar {
+    margin: 24px 0 8px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 14px; display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end;
   }
-  .empty strong { color: var(--text); display: block; margin-bottom: 6px; font-size: 16px; }
-
-  footer {
-    text-align: center;
-    padding: 24px 20px 40px;
-    color: var(--muted);
-    font-size: 12px;
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field > span, .price-head > span { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .control {
+    height: 42px; border: 1px solid var(--border); border-radius: 10px;
+    background: var(--surface); color: var(--text);
+    padding: 0 12px; font-family: inherit; font-size: 14px;
   }
+  .control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  #q { width: 220px; }
+  #region { width: 200px; }
+  .dates { display: flex; gap: 6px; align-items: center; }
+  .dates .control { width: 150px; }
+  .price-field { width: 210px; }
+  .price-head { display: flex; justify-content: space-between; }
+  .price-head b { font-size: 13px; }
+  input[type=range] { width: 100%; accent-color: var(--accent); height: 42px; margin: 0; }
+  .toggles { display: flex; gap: 8px; }
+  .toggle {
+    height: 42px; display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border); border-radius: 999px; padding: 0 14px;
+    background: var(--surface); font-size: 14px; font-weight: 500; cursor: pointer; user-select: none;
+  }
+  .toggle input { display: none; }
+  .toggle.on { background: var(--accent-soft); border-color: #C7D2FE; color: var(--accent); }
+  .btn-ghost {
+    height: 42px; border: none; background: none; color: var(--muted);
+    font-weight: 500; font-size: 14px; cursor: pointer; padding: 0 8px; margin-left: auto;
+  }
+  .btn-ghost:hover { color: var(--text); }
 
-  @media (max-width: 520px) {
-    .row { grid-template-columns: 1fr auto; grid-template-areas: "city price" "dates dates"; }
-    .row .code { display: none; }
-    .row .dates { grid-area: dates; text-align: left; margin-top: 4px; }
-    .row .price { grid-area: price; }
+  /* ---------- Section headers ---------- */
+  .section-head { display: flex; align-items: center; justify-content: space-between; margin: 36px 0 16px; gap: 12px; flex-wrap: wrap; }
+  .section-head h2 { margin: 0; font-size: 22px; letter-spacing: -.02em; }
+  .section-head .sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  .link-btn { color: var(--accent); font-weight: 600; text-decoration: none; font-size: 14px; }
+  .link-btn:hover { text-decoration: underline; }
+  .seg { display: inline-flex; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 3px; }
+  .seg button { border: none; background: none; padding: 7px 12px; border-radius: 7px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; }
+  .seg button.on { background: var(--bg); color: var(--text); }
+  .right-tools { display: flex; gap: 10px; align-items: center; }
+  #sort { height: 38px; }
+
+  /* ---------- Cards ---------- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow); cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
+    display: flex; flex-direction: column;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .art {
+    position: relative; height: 150px; overflow: hidden;
+    display: flex; align-items: flex-end; padding: 14px 16px; color: #fff;
+  }
+  .art .big {
+    position: absolute; right: -6px; bottom: -22px;
+    font-size: 110px; font-weight: 800; letter-spacing: -.05em; opacity: .18; line-height: 1;
+  }
+  .art .city { position: relative; font-size: 22px; font-weight: 700; letter-spacing: -.02em; text-shadow: 0 1px 8px rgba(0,0,0,.18); }
+  .art .country { position: relative; font-size: 13px; opacity: .9; margin-left: 8px; margin-bottom: 4px; }
+  .badges { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill {
+    display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; background: rgba(255,255,255,.95); color: var(--text); white-space: nowrap;
+  }
+  .pill.save { background: var(--green); color: #fff; }
+  .pill.mistake { background: var(--red); color: #fff; }
+  .pill.cap { background: #fff; color: var(--accent); }
+  .card-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .route { font-weight: 600; font-size: 14px; }
+  .route .arrow { color: var(--faint); margin: 0 6px; }
+  .route .dest-code { color: var(--muted); font-weight: 500; }
+  .when { color: var(--muted); font-size: 13px; }
+  .price-row { display: flex; align-items: baseline; gap: 8px; margin-top: auto; }
+  .price { font-size: 26px; font-weight: 800; letter-spacing: -.02em; }
+  .rt { color: var(--muted); font-size: 12px; }
+  .was { color: var(--faint); text-decoration: line-through; font-size: 14px; margin-left: auto; }
+  .card .cta {
+    margin-top: 4px; height: 40px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--surface); font-weight: 600; font-size: 14px; color: var(--text); cursor: pointer;
+  }
+  .card:hover .cta { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* ---------- Price meter ---------- */
+  .meter { position: relative; height: 8px; border-radius: 999px; background: linear-gradient(90deg, #10B981 0%, #A3E635 35%, #F59E0B 65%, #EF4444 100%); }
+  .meter .knob {
+    position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%;
+    background: #fff; border: 3px solid var(--text); transform: translate(-50%, -50%);
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  }
+  .meter-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--faint); margin-top: 6px; }
+  .meter-pending { font-size: 12px; color: var(--faint); display: flex; align-items: center; gap: 8px; }
+  .meter-pending .bar { flex: 1; min-width: 40px; height: 8px; border-radius: 999px; background: repeating-linear-gradient(90deg, #E5E7EB 0 8px, #F3F4F6 8px 16px); }
+
+  /* ---------- List view ---------- */
+  .list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+  .lrow {
+    display: grid; grid-template-columns: 52px 1.4fr 1fr 200px 170px 100px; gap: 16px; align-items: center;
+    padding: 12px 18px; border-bottom: 1px solid var(--border); cursor: pointer;
+  }
+  .lrow:last-child { border-bottom: none; }
+  .lrow:hover { background: #FAFAFB; }
+  .swatch { width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 13px; }
+  .lrow .city-name { font-weight: 600; }
+  .lrow .muted { color: var(--muted); font-size: 13px; }
+  .lrow .price { font-size: 20px; text-align: right; }
+  .lrow .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .lrow .pill { border: 1px solid var(--border); }
+  .list-head { background: var(--bg); cursor: default; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .list-head:hover { background: var(--bg); }
+
+  /* ---------- Region tiles ---------- */
+  .regions { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .region-tile {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px; cursor: pointer; box-shadow: var(--shadow); transition: box-shadow .18s, transform .18s;
+    text-align: left; font: inherit; color: inherit;
+  }
+  .region-tile:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .region-tile .name { font-weight: 600; }
+  .region-tile .from { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .region-tile .from b { color: var(--text); font-size: 18px; }
+
+  /* ---------- Empty ---------- */
+  .empty { text-align: center; padding: 70px 20px; color: var(--muted); background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); }
+  .empty strong { display: block; color: var(--text); font-size: 17px; margin-bottom: 6px; }
+
+  /* ---------- Modal ---------- */
+  .overlay {
+    position: fixed; inset: 0; z-index: 50; background: rgba(17,24,39,.45);
+    display: none; align-items: flex-start; justify-content: center; padding: 48px 20px; overflow-y: auto;
+  }
+  .overlay.open { display: flex; }
+  .modal {
+    width: 100%; max-width: 760px; background: var(--surface); border-radius: 18px;
+    overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.25);
+    animation: pop .18s ease;
+  }
+  @keyframes pop { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .modal .art { height: 190px; padding: 22px 26px; }
+  .modal .art .city { font-size: 32px; }
+  .modal .art .big { font-size: 150px; }
+  .close {
+    position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%;
+    border: none; background: rgba(255,255,255,.9); font-size: 20px; cursor: pointer; color: var(--text);
+  }
+  .modal-body { padding: 24px 26px 28px; display: grid; gap: 22px; }
+  .detail-top { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+  .itin { display: grid; gap: 4px; }
+  .itin .route { font-size: 17px; }
+  .detail-price { text-align: right; }
+  .detail-price .price { font-size: 38px; }
+  .savings-note { padding: 12px 14px; border-radius: 12px; background: var(--green-soft); color: #065F46; font-size: 14px; font-weight: 500; }
+  .savings-note.neutral { background: var(--bg); color: var(--muted); }
+  .box { border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .box h3 { margin: 0 0 12px; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+  .stat .k { font-size: 12px; color: var(--muted); }
+  .stat .v { font-weight: 700; font-size: 16px; margin-top: 2px; }
+  .spark { width: 100%; height: 70px; display: block; margin-top: 14px; }
+  .book-grid { display: grid; gap: 10px; }
+  .book-primary {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    height: 50px; border-radius: 12px; background: var(--accent); color: #fff; text-decoration: none;
+    font-weight: 700; font-size: 15px;
+  }
+  .book-primary:hover { filter: brightness(1.08); }
+  .book-alts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .book-alt {
+    display: flex; align-items: center; justify-content: center; height: 44px; border-radius: 12px;
+    border: 1px solid var(--border); text-decoration: none; font-weight: 600; font-size: 14px;
+  }
+  .book-alt:hover { border-color: var(--accent); color: var(--accent); }
+  .fine { font-size: 12px; color: var(--faint); line-height: 1.5; }
+
+  footer { text-align: center; color: var(--faint); font-size: 12px; padding: 40px 20px 50px; }
+
+  @media (max-width: 900px) {
+    .nav-inner, .wrap { padding: 0 16px; }
+    .nav-inner { gap: 14px; }
+    .status { display: none; }
+    .lrow { grid-template-columns: 44px 1fr auto; }
+    .lrow .hide-sm { display: none; }
+    .list-head { display: none; }
+    #q, #region, .price-field { width: 100%; }
+    .field { flex: 1 1 100%; }
+    .dates .control { flex: 1; width: auto; min-width: 0; }
+    .btn-ghost { margin-left: 0; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .book-alts { grid-template-columns: 1fr; }
+    .overlay { padding: 16px 10px; }
+    .detail-price { text-align: left; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <h1 class="route">ATL<span class="arrow">&rarr;</span>Anywhere</h1>
-  <div class="meta" id="meta">Loading latest scan&hellip;</div>
-</header>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#/"><span class="brand-mark">✈</span>ATL Deals</a>
+    <div class="nav-links">
+      <a href="#/" data-route="home">Home</a>
+      <a href="#/explore" data-route="explore">Explore</a>
+    </div>
+    <div class="status" id="status"><span class="dot"></span>Loading…</div>
+  </div>
+</nav>
 
-<div class="filters">
-  <input type="text" id="search" placeholder="Search a city or airport code">
-  <select id="region">
-    <option value="all">All regions</option>
-    <option value="domestic">Domestic only</option>
-    <option value="international">International only</option>
-  </select>
-  <label>Under $<input type="number" id="maxPrice" class="price-field" placeholder="any"></label>
-  <label>From <input type="date" id="dateFrom" class="date-field"></label>
-  <label>To <input type="date" id="dateTo" class="date-field"></label>
-  <label><input type="checkbox" id="dealsOnly"> Deals only</label>
-  <select id="sort">
-    <option value="smart">Sort: best first</option>
-    <option value="price">Sort: price, low to high</option>
-    <option value="percent">Sort: % off, high to low</option>
-    <option value="city">Sort: city name</option>
-  </select>
-  <div class="spacer"></div>
-  <button id="clear">Clear filters</button>
-</div>
+<div class="wrap">
 
-<main>
-  <div id="list"></div>
-</main>
+  <section class="hero" id="hero">
+    <div class="home-chip"><span class="code">ATL</span>Departing Hartsfield–Jackson Atlanta</div>
+    <h1>Cheap flights from Atlanta</h1>
+    <p id="heroSub">Scanned twice a day across 70 destinations.</p>
+  </section>
 
-<footer id="footer"></footer>
-
-<script>
-let ALL_DEALS = [];
-let GENERATED_AT = null;
-
-async function load() {
-  try {
-    const res = await fetch('data/deals.json', { cache: 'no-store' });
-    const data = await res.json();
-    ALL_DEALS = data.deals || [];
-    GENERATED_AT = data.generated_at;
-  } catch (e) {
-    ALL_DEALS = [];
-    GENERATED_AT = null;
-  }
-  render();
-}
-
-function timeAgo(iso) {
-  if (!iso) return 'never';
-  const diffMs = Date.now() - new Date(iso).getTime();
-  const hours = Math.floor(diffMs / 3600000);
-  if (hours < 1) return 'less than an hour ago';
-  if (hours < 24) return hours + (hours === 1 ? ' hour ago' : ' hours ago');
-  const days = Math.floor(hours / 24);
-  return days + (days === 1 ? ' day ago' : ' days ago');
-}
-
-function applyFilters() {
-  const q = document.getElementById('search').value.trim().toLowerCase();
-  const region = document.getElementById('region').value;
-  const maxPrice = parseFloat(document.getElementById('maxPrice').value);
-  const dateFrom = document.getElementById('dateFrom').value;
-  const dateTo = document.getElementById('dateTo').value;
-  const dealsOnly = document.getElementById('dealsOnly').checked;
-  const sort = document.getElementById('sort').value;
-
-  let rows = ALL_DEALS.filter(d => {
-    if (q && !(d.city.toLowerCase().includes(q) || d.destination.toLowerCase().includes(q) || d.country.toLowerCase().includes(q))) return false;
-    if (region === 'domestic' && !d.domestic) return false;
-    if (region === 'international' && d.domestic) return false;
-    if (!isNaN(maxPrice) && d.price > maxPrice) return false;
-    if (dateFrom && d.departure_date && d.departure_date < dateFrom) return false;
-    if (dateTo && d.departure_date && d.departure_date > dateTo) return false;
-    if (dealsOnly && !d.deal) return false;
-    return true;
-  });
-
-  if (sort === 'price') {
-    rows.sort((a, b) => a.price - b.price);
-  } else if (sort === 'percent') {
-    rows.sort((a, b) => (b.percent_off || -999) - (a.percent_off || -999));
-  } else if (sort === 'city') {
-    rows.sort((a, b) => a.city.localeCompare(b.city));
-  } else {
-    rows.sort((a, b) => (b.deal - a.deal) || (a.price - b.price));
-  }
-
-  return rows;
-}
-
-function render() {
-  const rows = applyFilters();
-  const list = document.getElementById('list');
-  const flaggedTotal = ALL_DEALS.filter(d => d.deal).length;
-
-  document.getElementById('meta').innerHTML =
-    `<span class="count">${flaggedTotal}</span> deal${flaggedTotal === 1 ? '' : 's'} flagged right now &middot; last scanned ${timeAgo(GENERATED_AT)}`;
-
-  if (rows.length === 0) {
-    list.innerHTML = ALL_DEALS.length === 0
-      ? `<div class="empty"><strong>No scans yet</strong>The first automated scan will populate this list. If you don't want to wait, trigger one manually from the repo's Actions tab.</div>`
-      : `<div class="empty"><strong>Nothing matches those filters</strong>Try widening the price, dates, or region.</div>`;
-    return;
-  }
-
-  list.innerHTML = rows.map(d => `
-    <div class="row ${d.deal ? 'deal' : ''}">
-      <div class="code mono">${d.destination}</div>
-      <div>
-        <div class="city">${d.city}</div>
-        <div class="country">${d.country}</div>
-      </div>
-      <div class="dates mono">${d.departure_date || ''}${d.return_date ? ' &ndash; ' + d.return_date : ''}</div>
-      <div class="price mono">$${Math.round(d.price)}
-        ${d.deal ? `<span class="badge">${d.percent_off ? d.percent_off + '% off' : 'under cap'}</span>` : ''}
+  <div class="toolbar" id="toolbar">
+    <label class="field">
+      <span>Destination</span>
+      <input class="control" id="q" type="text" placeholder="City, country, or code">
+    </label>
+    <label class="field">
+      <span>Region</span>
+      <select class="control" id="region"></select>
+    </label>
+    <div class="field price-field">
+      <div class="price-head"><span>Max price</span><b id="priceLabel" class="num">Any</b></div>
+      <input type="range" id="maxPrice" min="50" step="25">
+    </div>
+    <div class="field">
+      <span>Departing between</span>
+      <div class="dates">
+        <input class="control" id="from" type="date">
+        <input class="control" id="to" type="date">
       </div>
     </div>
-  `).join('');
+    <div class="toggles">
+      <label class="toggle" id="dealsOnlyWrap"><input type="checkbox" id="dealsOnly">Deals only</label>
+      <label class="toggle" id="topOnlyWrap"><input type="checkbox" id="topOnly">Top deals (40%+ off)</label>
+    </div>
+    <button class="btn-ghost" id="clear">Reset</button>
+  </div>
+
+  <main id="home"></main>
+  <main id="explore" hidden></main>
+
+</div>
+
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" id="modal"></div>
+</div>
+
+<footer>Prices come from Google Flights date searches and can change quickly. Always confirm on the booking site.</footer>
+
+<script>
+/* ============================================================
+   Config
+   ============================================================ */
+const ORIGIN = 'ATL';
+const TOP_DEAL_PCT = 40;      // matches config.json percent_off_threshold
+const MISTAKE_PCT = 60;       // "possible mistake fare" label
+const MIN_SCANS_FOR_METER = 3;
+const STORE_KEY = 'atl-deals-prefs-v1';
+
+const REGIONS = [
+  ['all', 'All regions'],
+  ['domestic', 'Domestic (US)'],
+  ['carib', 'Caribbean & Mexico'],
+  ['latam', 'Central & South America'],
+  ['europe', 'Europe'],
+  ['canada', 'Canada'],
+  ['asia', 'Asia & Pacific'],
+  ['mea', 'Middle East & Africa'],
+];
+const COUNTRY_REGION = {
+  'Mexico': 'carib', 'Dominican Republic': 'carib', 'Bahamas': 'carib', 'Jamaica': 'carib',
+  'Panama': 'latam', 'Colombia': 'latam', 'Peru': 'latam', 'Brazil': 'latam', 'Argentina': 'latam', 'Chile': 'latam',
+  'United Kingdom': 'europe', 'France': 'europe', 'Italy': 'europe', 'Spain': 'europe', 'Greece': 'europe',
+  'Netherlands': 'europe', 'Germany': 'europe', 'Switzerland': 'europe', 'Ireland': 'europe', 'Portugal': 'europe', 'Turkey': 'europe',
+  'Canada': 'canada',
+  'Japan': 'asia', 'South Korea': 'asia', 'Hong Kong': 'asia', 'Singapore': 'asia',
+  'United Arab Emirates': 'mea', 'Qatar': 'mea', 'Israel': 'mea', 'South Africa': 'mea',
+};
+
+/* ============================================================
+   State
+   ============================================================ */
+const DEFAULT_FILTERS = { q: '', region: 'all', maxPrice: null, from: '', to: '', dealsOnly: false, topOnly: false, sort: 'best', view: 'grid' };
+const S = { deals: [], history: {}, generatedAt: null, byCode: {}, f: { ...DEFAULT_FILTERS }, lastBase: null };
+
+function loadPrefs() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) S.f = { ...DEFAULT_FILTERS, ...JSON.parse(raw) };
+  } catch (e) { /* storage unavailable, use defaults */ }
+}
+function savePrefs() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(S.f)); } catch (e) {}
 }
 
-document.querySelectorAll('.filters input, .filters select').forEach(el => el.addEventListener('input', render));
-document.getElementById('clear').addEventListener('click', () => {
-  document.getElementById('search').value = '';
-  document.getElementById('region').value = 'all';
-  document.getElementById('maxPrice').value = '';
-  document.getElementById('dateFrom').value = '';
-  document.getElementById('dateTo').value = '';
-  document.getElementById('dealsOnly').checked = false;
-  document.getElementById('sort').value = 'smart';
-  render();
-});
+/* ============================================================
+   Helpers
+   ============================================================ */
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const money = n => '$' + Math.round(n).toLocaleString();
 
-load();
+function parseDate(s) {
+  if (!s) return null;
+  const [y, m, d] = s.split('-').map(Number);
+  if (!y || !m || !d) return null;
+  return new Date(y, m - 1, d);
+}
+function fmtDate(s, withYear) {
+  const d = parseDate(s);
+  if (!d) return '';
+  return d.toLocaleDateString('en-US', withYear ? { month: 'short', day: 'numeric', year: 'numeric' } : { month: 'short', day: 'numeric' });
+}
+function tripDays(a, b) {
+  const x = parseDate(a), y = parseDate(b);
+  return x && y ? Math.round((y - x) / 86400000) : null;
+}
+function timeAgo(iso) {
+  if (!iso) return null;
+  const mins = Math.floor((Date.now() - new Date(iso).getTime()) / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return mins + ' min ago';
+  const h = Math.floor(mins / 60);
+  if (h < 24) return h + (h === 1 ? ' hr ago' : ' hrs ago');
+  const d = Math.floor(h / 24);
+  return d + (d === 1 ? ' day ago' : ' days ago');
+}
+function regionOf(d) {
+  if (d.domestic) return 'domestic';
+  return COUNTRY_REGION[d.country] || 'other';
+}
+function regionName(key) {
+  const r = REGIONS.find(r => r[0] === key);
+  return r ? r[1] : 'Other';
+}
+
+// Deterministic color per destination so every card has its own look
+function hueFor(code) {
+  let h = 0;
+  for (const ch of code) h = (h * 31 + ch.charCodeAt(0)) % 360;
+  return h;
+}
+function artBg(code) {
+  const h = hueFor(code);
+  return `linear-gradient(135deg, hsl(${h} 70% 52%) 0%, hsl(${(h + 40) % 360} 75% 40%) 100%)`;
+}
+
+/* Price context from history.json. The scanner appends the current scan's
+   price to history before saving, so the last entry is "now". */
+function priceStats(d) {
+  const pts = (S.history[d.destination] || []).map(p => p.price).filter(p => typeof p === 'number');
+  const prior = pts.length > 1 ? pts.slice(0, -1) : [];
+  const typical = prior.length >= 2 ? prior.reduce((a, b) => a + b, 0) / prior.length : null;
+  const all = pts.length ? pts : [d.price];
+  const min = Math.min(...all, d.price), max = Math.max(...all, d.price);
+  let savings = d.percent_off;
+  if (savings == null && typical) savings = Math.round((1 - d.price / typical) * 100);
+  return { pts, scans: pts.length, typical, min, max, savings };
+}
+
+function badgesFor(d, st) {
+  const out = [];
+  if (st.savings != null && st.savings >= MISTAKE_PCT && st.scans >= 5) out.push(['mistake', 'Possible mistake fare']);
+  if (st.savings != null && st.savings >= 15) out.push(['save', `Save ${Math.round(st.savings)}%`]);
+  else if (d.deal) out.push(['cap', 'Under price cap']);
+  return out;
+}
+
+/* Booking deep links, pre-filled with this route and these dates */
+function yymmdd(s) { return s ? s.slice(2).replace(/-/g, '') : ''; }
+function bookingLinks(d) {
+  const dest = d.destination, dep = d.departure_date, ret = d.return_date;
+  const q = ret
+    ? `Flights from ${ORIGIN} to ${dest} on ${dep} through ${ret}`
+    : `One way flights from ${ORIGIN} to ${dest} on ${dep}`;
+  return {
+    google: 'https://www.google.com/travel/flights?q=' + encodeURIComponent(q),
+    kayak: `https://www.kayak.com/flights/${ORIGIN}-${dest}/${dep}${ret ? '/' + ret : ''}`,
+    skyscanner: `https://www.skyscanner.com/transport/flights/${ORIGIN.toLowerCase()}/${dest.toLowerCase()}/${yymmdd(dep)}/${ret ? yymmdd(ret) + '/' : ''}`,
+  };
+}
+
+/* ============================================================
+   Filtering and sorting
+   ============================================================ */
+function filtered() {
+  const f = S.f;
+  const q = f.q.trim().toLowerCase();
+  const rows = S.deals.filter(d => {
+    if (q && !(`${d.city} ${d.country} ${d.destination}`.toLowerCase().includes(q))) return false;
+    if (f.region !== 'all' && regionOf(d) !== f.region) return false;
+    if (f.maxPrice != null && d.price > f.maxPrice) return false;
+    if (f.from && d.departure_date && d.departure_date < f.from) return false;
+    if (f.to && d.departure_date && d.departure_date > f.to) return false;
+    if (f.dealsOnly && !d.deal) return false;
+    if (f.topOnly) {
+      const s = priceStats(d).savings;
+      if (s == null || s < TOP_DEAL_PCT) return false;
+    }
+    return true;
+  });
+  const sav = d => { const s = priceStats(d).savings; return s == null ? -999 : s; };
+  const sorters = {
+    best: (a, b) => (b.deal - a.deal) || (sav(b) - sav(a)) || (a.price - b.price),
+    price: (a, b) => a.price - b.price,
+    savings: (a, b) => (sav(b) - sav(a)) || (a.price - b.price),
+    soonest: (a, b) => (a.departure_date || '').localeCompare(b.departure_date || ''),
+    city: (a, b) => a.city.localeCompare(b.city),
+  };
+  return rows.sort(sorters[f.sort] || sorters.best);
+}
+
+/* ============================================================
+   Components
+   ============================================================ */
+function meterHTML(d, st) {
+  if (st.scans < MIN_SCANS_FOR_METER || st.max === st.min) {
+    return `<div class="meter-pending"><div class="bar"></div>Building price history (${Math.min(st.scans, MIN_SCANS_FOR_METER)}/${MIN_SCANS_FOR_METER} scans)</div>`;
+  }
+  const pos = Math.max(0, Math.min(100, ((d.price - st.min) / (st.max - st.min)) * 100));
+  return `<div class="meter"><div class="knob" style="left:${pos}%"></div></div>
+          <div class="meter-labels num"><span>Low ${money(st.min)}</span><span>High ${money(st.max)}</span></div>`;
+}
+
+function cardHTML(d) {
+  const st = priceStats(d);
+  const days = tripDays(d.departure_date, d.return_date);
+  const badges = badgesFor(d, st).map(([c, t]) => `<span class="pill ${c}">${esc(t)}</span>`).join('');
+  return `
+  <article class="card" tabindex="0" data-code="${esc(d.destination)}">
+    <div class="art" style="background:${artBg(d.destination)}">
+      <div class="badges">${badges}</div>
+      <div class="big">${esc(d.destination)}</div>
+      <span class="city">${esc(d.city)}</span>
+    </div>
+    <div class="card-body">
+      <div class="route">${ORIGIN}<span class="arrow">→</span>${esc(d.city)}, ${esc(d.country)} <span class="dest-code">(${esc(d.destination)})</span></div>
+      <div class="when">${fmtDate(d.departure_date)}${d.return_date ? ' – ' + fmtDate(d.return_date) : ''}${days ? ` · ${days}-day trip` : ''}</div>
+      <div class="price-row">
+        <span class="price num">${money(d.price)}</span><span class="rt">${d.return_date ? 'round trip' : 'one way'}</span>
+        ${st.typical && st.typical > d.price ? `<span class="was num">${money(st.typical)}</span>` : ''}
+      </div>
+      ${meterHTML(d, st)}
+      <button class="cta" tabindex="-1">View deal</button>
+    </div>
+  </article>`;
+}
+
+function listHTML(rows) {
+  const head = `<div class="lrow list-head"><div></div><div>Destination</div><div class="hide-sm">Dates</div><div class="hide-sm">Price position</div><div class="hide-sm">Tags</div><div style="text-align:right">Price</div></div>`;
+  const body = rows.map(d => {
+    const st = priceStats(d);
+    const tags = badgesFor(d, st).map(([c, t]) => `<span class="pill">${esc(t)}</span>`).join('');
+    return `
+    <div class="lrow" tabindex="0" data-code="${esc(d.destination)}">
+      <div class="swatch" style="background:${artBg(d.destination)}">${esc(d.destination)}</div>
+      <div><div class="city-name">${esc(d.city)}</div><div class="muted">${esc(d.country)}</div></div>
+      <div class="hide-sm muted">${fmtDate(d.departure_date)}${d.return_date ? ' – ' + fmtDate(d.return_date) : ''}</div>
+      <div class="hide-sm">${meterHTML(d, st)}</div>
+      <div class="hide-sm tags">${tags}</div>
+      <div class="price num">${money(d.price)}</div>
+    </div>`;
+  }).join('');
+  return `<div class="list">${head}${body}</div>`;
+}
+
+function emptyHTML() {
+  if (!S.deals.length) {
+    return `<div class="empty"><strong>No scan data yet</strong>Run "Scan flight deals" from the repo's Actions tab, then refresh this page.</div>`;
+  }
+  return `<div class="empty"><strong>Nothing matches those filters</strong>Try a higher max price, wider dates, or a different region.</div>`;
+}
+
+/* ============================================================
+   Views
+   ============================================================ */
+function renderHome() {
+  const rows = filtered();
+  const top = rows.slice(0, 8);
+  const flagged = S.deals.filter(d => d.deal).length;
+
+  const regionStats = REGIONS.slice(1).map(([key, name]) => {
+    const inRegion = S.deals.filter(d => regionOf(d) === key);
+    if (!inRegion.length) return '';
+    const cheapest = Math.min(...inRegion.map(d => d.price));
+    return `<button class="region-tile" data-region="${key}">
+      <div class="name">${esc(name)}</div>
+      <div class="from">from <b class="num">${money(cheapest)}</b> · ${inRegion.length} ${inRegion.length === 1 ? 'place' : 'places'}</div>
+    </button>`;
+  }).join('');
+
+  $('home').innerHTML = `
+    <div class="section-head">
+      <div><h2>Top deals right now</h2><div class="sub">${flagged} flagged out of ${S.deals.length} destinations scanned</div></div>
+      <a class="link-btn" href="#/explore">Browse all ${rows.length} results →</a>
+    </div>
+    ${top.length ? `<div class="grid">${top.map(cardHTML).join('')}</div>` : emptyHTML()}
+    ${regionStats ? `
+    <div class="section-head"><div><h2>Explore by region</h2><div class="sub">Cheapest fare in each region from the latest scan</div></div></div>
+    <div class="regions">${regionStats}</div>` : ''}
+  `;
+}
+
+function renderExplore() {
+  const rows = filtered();
+  const f = S.f;
+  $('explore').innerHTML = `
+    <div class="section-head">
+      <div><h2>All destinations</h2><div class="sub">${rows.length} of ${S.deals.length} shown</div></div>
+      <div class="right-tools">
+        <select class="control" id="sort">
+          <option value="best">Sort: Best first</option>
+          <option value="price">Sort: Lowest price</option>
+          <option value="savings">Sort: Biggest savings</option>
+          <option value="soonest">Sort: Soonest departure</option>
+          <option value="city">Sort: City A–Z</option>
+        </select>
+        <div class="seg">
+          <button data-view="grid" class="${f.view === 'grid' ? 'on' : ''}">Grid</button>
+          <button data-view="list" class="${f.view === 'list' ? 'on' : ''}">List</button>
+        </div>
+      </div>
+    </div>
+    ${!rows.length ? emptyHTML() : f.view === 'list' ? listHTML(rows) : `<div class="grid">${rows.map(cardHTML).join('')}</div>`}
+  `;
+  $('sort').value = f.sort;
+}
+
+function renderDetail(code) {
+  const d = S.byCode[code];
+  if (!d) { closeDetail(); return; }
+  const st = priceStats(d);
+  const days = tripDays(d.departure_date, d.return_date);
+  const links = bookingLinks(d);
+  const badges = badgesFor(d, st).map(([c, t]) => `<span class="pill ${c}">${esc(t)}</span>`).join('');
+
+  let note;
+  if (st.typical && st.typical > d.price) {
+    note = `<div class="savings-note">This fare is ${money(st.typical - d.price)} lower than the typical price on this route (${money(st.typical)} average over ${st.scans - 1} earlier scans).</div>`;
+  } else if (st.typical) {
+    note = `<div class="savings-note neutral">This is about the usual price for this route (${money(st.typical)} average over ${st.scans - 1} earlier scans).</div>`;
+  } else {
+    note = `<div class="savings-note neutral">Not enough history yet to compare. The typical price shows up after a few more scans.${d.deal ? ' This one was flagged because it is under your price cap.' : ''}</div>`;
+  }
+
+  let spark = '';
+  if (st.pts.length >= 2) {
+    const W = 600, H = 70, pad = 6;
+    const lo = Math.min(...st.pts), hi = Math.max(...st.pts);
+    const span = hi - lo || 1;
+    const pts = st.pts.map((p, i) => [
+      pad + (i / (st.pts.length - 1)) * (W - pad * 2),
+      H - pad - ((p - lo) / span) * (H - pad * 2),
+    ]);
+    const last = pts[pts.length - 1];
+    spark = `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-label="Price history">
+      <polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="#4F46E5" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+      <circle cx="${last[0]}" cy="${last[1]}" r="5" fill="#4F46E5"/>
+    </svg>`;
+  }
+
+  $('modal').innerHTML = `
+    <div class="art" style="background:${artBg(d.destination)}">
+      <div class="badges">${badges}</div>
+      <div class="big">${esc(d.destination)}</div>
+      <span class="city">${esc(d.city)}</span><span class="country">${esc(d.country)}</span>
+      <button class="close" id="closeBtn" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-top">
+        <div class="itin">
+          <div class="route">${ORIGIN} Atlanta<span class="arrow">→</span>${esc(d.city)} (${esc(d.destination)})</div>
+          <div class="when">Depart ${fmtDate(d.departure_date, true)}${d.return_date ? ` · Return ${fmtDate(d.return_date, true)}` : ''}</div>
+          <div class="when">${days ? days + '-day trip · ' : ''}${esc(regionName(regionOf(d)))}</div>
+        </div>
+        <div class="detail-price">
+          <div class="price num">${money(d.price)}</div>
+          <div class="rt">${d.return_date ? 'round trip' : 'one way'}, per person${st.typical && st.typical > d.price ? ` · <s class="num">${money(st.typical)}</s>` : ''}</div>
+        </div>
+      </div>
+
+      ${note}
+
+      <div class="box">
+        <h3>Price history on this route</h3>
+        ${meterHTML(d, st)}
+        ${spark}
+        <div class="stats">
+          <div class="stat"><div class="k">Lowest seen</div><div class="v num">${money(st.min)}</div></div>
+          <div class="stat"><div class="k">Highest seen</div><div class="v num">${money(st.max)}</div></div>
+          <div class="stat"><div class="k">Scans</div><div class="v num">${st.scans}</div></div>
+        </div>
+      </div>
+
+      <div class="book-grid">
+        <a class="book-primary" href="${links.google}" target="_blank" rel="noopener">Book on Google Flights ↗</a>
+        <div class="book-alts">
+          <a class="book-alt" href="${links.kayak}" target="_blank" rel="noopener">Check Kayak ↗</a>
+          <a class="book-alt" href="${links.skyscanner}" target="_blank" rel="noopener">Check Skyscanner ↗</a>
+        </div>
+        <div class="fine">Each link opens a search already filled in with this route and these dates, where you can see airlines, stops, times and baggage before booking. Prices change often, so the fare may differ a little from what's shown here. Scanned ${esc(timeAgo(d.scanned_at) || 'recently')}.</div>
+      </div>
+    </div>
+  `;
+  $('overlay').classList.add('open');
+  $('overlay').setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  $('closeBtn').addEventListener('click', closeDetail);
+}
+
+function closeDetail() {
+  $('overlay').classList.remove('open');
+  $('overlay').setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (location.hash.startsWith('#/deal/')) {
+    history.replaceState(null, '', S.lastBase || '#/');
+  }
+}
+
+function renderStatus() {
+  const ago = timeAgo(S.generatedAt);
+  const flagged = S.deals.filter(d => d.deal).length;
+  const stale = S.generatedAt && (Date.now() - new Date(S.generatedAt).getTime()) > 26 * 3600000;
+  $('status').innerHTML = ago
+    ? `<span class="dot${stale ? ' stale' : ''}"></span><b class="num">${flagged}</b>&nbsp;deals flagged · last scanned ${ago}`
+    : `<span class="dot stale"></span>Waiting for first scan`;
+}
+
+/* ============================================================
+   Routing
+   ============================================================ */
+function showPage(isExplore) {
+  $('home').hidden = isExplore;
+  $('explore').hidden = !isExplore;
+  $('hero').hidden = isExplore;
+  document.querySelectorAll('.nav-links a').forEach(a =>
+    a.classList.toggle('active', a.dataset.route === (isExplore ? 'explore' : 'home')));
+  isExplore ? renderExplore() : renderHome();
+}
+
+function route() {
+  const h = location.hash || '#/';
+  const parts = h.replace(/^#\//, '').split('/');
+  if (parts[0] === 'deal') {
+    if (!S.lastBase) { S.lastBase = '#/'; showPage(false); }
+    renderDetail(decodeURIComponent(parts[1] || ''));
+    return;
+  }
+  S.lastBase = h;
+  if ($('overlay').classList.contains('open')) closeDetail();
+  showPage(parts[0] === 'explore');
+}
+
+function rerender() {
+  savePrefs();
+  $('explore').hidden ? renderHome() : renderExplore();
+}
+
+/* ============================================================
+   Toolbar wiring
+   ============================================================ */
+function setupToolbar() {
+  $('region').innerHTML = REGIONS.map(([k, n]) => `<option value="${k}">${n}</option>`).join('');
+
+  const maxSeen = S.deals.length ? Math.max(...S.deals.map(d => d.price)) : 2000;
+  const top = Math.max(100, Math.ceil(maxSeen / 50) * 50);
+  const slider = $('maxPrice');
+  slider.max = top;
+
+  const syncFromState = () => {
+    const f = S.f;
+    $('q').value = f.q;
+    $('region').value = f.region;
+    slider.value = f.maxPrice == null ? top : Math.min(f.maxPrice, top);
+    $('priceLabel').textContent = f.maxPrice == null ? 'Any' : 'Under ' + money(f.maxPrice);
+    $('from').value = f.from;
+    $('to').value = f.to;
+    $('dealsOnly').checked = f.dealsOnly;
+    $('topOnly').checked = f.topOnly;
+    $('dealsOnlyWrap').classList.toggle('on', f.dealsOnly);
+    $('topOnlyWrap').classList.toggle('on', f.topOnly);
+  };
+  syncFromState();
+
+  $('q').addEventListener('input', e => { S.f.q = e.target.value; rerender(); });
+  $('region').addEventListener('change', e => { S.f.region = e.target.value; rerender(); });
+  slider.addEventListener('input', e => {
+    const v = Number(e.target.value);
+    S.f.maxPrice = v >= top ? null : v;
+    $('priceLabel').textContent = S.f.maxPrice == null ? 'Any' : 'Under ' + money(v);
+    rerender();
+  });
+  $('from').addEventListener('change', e => { S.f.from = e.target.value; rerender(); });
+  $('to').addEventListener('change', e => { S.f.to = e.target.value; rerender(); });
+  $('dealsOnly').addEventListener('change', e => {
+    S.f.dealsOnly = e.target.checked; $('dealsOnlyWrap').classList.toggle('on', e.target.checked); rerender();
+  });
+  $('topOnly').addEventListener('change', e => {
+    S.f.topOnly = e.target.checked; $('topOnlyWrap').classList.toggle('on', e.target.checked); rerender();
+  });
+  $('clear').addEventListener('click', () => {
+    const { sort, view } = S.f;
+    S.f = { ...DEFAULT_FILTERS, sort, view };
+    syncFromState();
+    rerender();
+  });
+}
+
+/* Delegated clicks: cards, list rows, region tiles, view toggle */
+document.addEventListener('click', e => {
+  const tile = e.target.closest('.region-tile');
+  if (tile) {
+    S.f.region = tile.dataset.region;
+    $('region').value = S.f.region;
+    savePrefs();
+    location.hash = '#/explore';
+    return;
+  }
+  const viewBtn = e.target.closest('[data-view]');
+  if (viewBtn) { S.f.view = viewBtn.dataset.view; rerender(); return; }
+  const item = e.target.closest('[data-code]');
+  if (item) { location.hash = '#/deal/' + encodeURIComponent(item.dataset.code); }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && $('overlay').classList.contains('open')) { closeDetail(); return; }
+  if (e.key === 'Enter' && e.target.closest) {
+    const item = e.target.closest('[data-code]');
+    if (item) location.hash = '#/deal/' + encodeURIComponent(item.dataset.code);
+  }
+});
+document.addEventListener('change', e => {
+  if (e.target.id === 'sort') { S.f.sort = e.target.value; rerender(); }
+});
+$('overlay').addEventListener('click', e => { if (e.target.id === 'overlay') closeDetail(); });
+window.addEventListener('hashchange', route);
+
+/* ============================================================
+   Load
+   ============================================================ */
+async function getJSON(path, fallback) {
+  try {
+    const r = await fetch(path, { cache: 'no-store' });
+    if (!r.ok) return fallback;
+    return await r.json();
+  } catch (e) { return fallback; }
+}
+
+(async function init() {
+  loadPrefs();
+  const [deals, hist] = await Promise.all([
+    getJSON('data/deals.json', { deals: [] }),
+    getJSON('data/history.json', {}),
+  ]);
+  S.deals = (deals.deals || []).filter(d => typeof d.price === 'number');
+  S.generatedAt = deals.generated_at || null;
+  S.history = hist || {};
+  S.byCode = Object.fromEntries(S.deals.map(d => [d.destination, d]));
+
+  if (S.deals.length) {
+    const cheapest = Math.min(...S.deals.map(d => d.price));
+    $('heroSub').textContent = `${S.deals.length} destinations scanned twice a day. Fares start at ${money(cheapest)}.`;
+  }
+
+  setupToolbar();
+  renderStatus();
+  route();
+})();
 </script>
 </body>
 </html>
