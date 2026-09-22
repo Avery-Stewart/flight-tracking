@@ -28,97 +28,67 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; }
   body {
-    background: var(--bg);
-    color: var(--text);
+    background: var(--bg); color: var(--text);
     font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 15px;
+    -webkit-font-smoothing: antialiased; font-size: 15px;
   }
   button { font-family: inherit; }
   a { color: inherit; }
   .num { font-variant-numeric: tabular-nums; }
   [hidden] { display: none !important; }
 
-  /* ---------- Top nav ---------- */
-  .nav {
-    position: sticky; top: 0; z-index: 20;
-    background: rgba(255,255,255,.92);
-    backdrop-filter: saturate(1.4) blur(8px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner {
-    max-width: 1280px; margin: 0 auto; padding: 0 28px;
-    height: 64px; display: flex; align-items: center; gap: 28px;
-  }
-  .brand { font-weight: 800; font-size: 18px; letter-spacing: -.02em; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  /* nav */
+  .nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.93); backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 28px; height: 64px; display: flex; align-items: center; gap: 22px; }
+  .brand { white-space: nowrap; font-weight: 800; font-size: 18px; letter-spacing: -.02em; text-decoration: none; display: flex; align-items: center; gap: 8px; }
   .brand-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 15px; }
   .nav-links { display: flex; gap: 4px; }
-  .nav-links a {
-    text-decoration: none; color: var(--muted); font-weight: 500;
-    padding: 8px 14px; border-radius: 8px;
-  }
+  .nav-links a { text-decoration: none; color: var(--muted); font-weight: 500; padding: 8px 14px; border-radius: 8px; white-space: nowrap; }
   .nav-links a.active { color: var(--text); background: var(--bg); }
   .nav-links a:hover { color: var(--text); }
-  .status {
-    margin-left: auto; font-size: 13px; color: var(--muted);
-    display: flex; align-items: center; gap: 8px; white-space: nowrap;
-  }
+  .count-badge { display: inline-block; min-width: 20px; padding: 0 6px; margin-left: 6px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 700; text-align: center; }
+  .status { margin-left: auto; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; white-space: nowrap; }
   .status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px var(--green-soft); }
   .status .dot.stale { background: var(--amber); box-shadow: 0 0 0 3px #FFFBEB; }
   .status b { color: var(--text); font-weight: 600; }
 
   .wrap { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
 
-  /* ---------- Hero ---------- */
-  .hero { padding: 44px 0 8px; }
+  /* hero */
+  .hero { padding: 42px 0 8px; }
   .hero h1 { font-size: clamp(30px, 4vw, 44px); letter-spacing: -.03em; margin: 0 0 10px; font-weight: 800; }
   .hero p { color: var(--muted); margin: 0; font-size: 16px; }
-  .home-chip {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--surface); border: 1px solid var(--border);
-    padding: 6px 12px 6px 6px; border-radius: 999px; font-size: 13px; font-weight: 500;
-    margin-bottom: 18px;
-  }
+  .hero-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+  .home-chip { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); padding: 6px 12px 6px 6px; border-radius: 999px; font-size: 13px; font-weight: 500; }
   .home-chip .code { background: var(--accent); color: #fff; font-weight: 700; padding: 3px 9px; border-radius: 999px; font-size: 12px; }
+  .surprise { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-weight: 600; font-size: 13px; cursor: pointer; }
+  .surprise:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* ---------- Toolbar ---------- */
-  .toolbar {
-    margin: 24px 0 8px;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); box-shadow: var(--shadow);
-    padding: 14px; display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end;
-  }
+  /* toolbar */
+  .toolbar { margin: 24px 0 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px; display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
   .field { display: flex; flex-direction: column; gap: 6px; }
-  .field > span, .price-head > span { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
-  .control {
-    height: 42px; border: 1px solid var(--border); border-radius: 10px;
-    background: var(--surface); color: var(--text);
-    padding: 0 12px; font-family: inherit; font-size: 14px;
-  }
+  .field > span { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .control { height: 42px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text); padding: 0 12px; font-family: inherit; font-size: 14px; }
   .control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
-  #q { width: 220px; }
-  #region { width: 200px; }
-  .dates { display: flex; gap: 6px; align-items: center; }
-  .dates .control { width: 150px; }
-  .price-field { width: 210px; }
-  .price-head { display: flex; justify-content: space-between; }
-  .price-head b { font-size: 13px; }
-  input[type=range] { width: 100%; accent-color: var(--accent); height: 42px; margin: 0; }
+  #q { width: 200px; }
+  #region { width: 185px; }
+  #tripLength { width: 150px; }
+  #budget { width: 120px; }
+  .dates { display: flex; gap: 6px; }
+  .dates .control { width: 145px; }
   .toggles { display: flex; gap: 8px; }
-  .toggle {
-    height: 42px; display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid var(--border); border-radius: 999px; padding: 0 14px;
-    background: var(--surface); font-size: 14px; font-weight: 500; cursor: pointer; user-select: none;
-  }
+  .toggle { height: 42px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 999px; padding: 0 14px; background: var(--surface); font-size: 14px; font-weight: 500; cursor: pointer; user-select: none; }
   .toggle input { display: none; }
   .toggle.on { background: var(--accent-soft); border-color: #C7D2FE; color: var(--accent); }
-  .btn-ghost {
-    height: 42px; border: none; background: none; color: var(--muted);
-    font-weight: 500; font-size: 14px; cursor: pointer; padding: 0 8px; margin-left: auto;
-  }
+  .btn-ghost { height: 42px; border: none; background: none; color: var(--muted); font-weight: 500; font-size: 14px; cursor: pointer; padding: 0 8px; margin-left: auto; }
   .btn-ghost:hover { color: var(--text); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; padding-top: 4px; border-top: 1px solid var(--border); margin-top: 2px; }
+  .chip { height: 32px; padding: 0 13px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: 13px; font-weight: 500; cursor: pointer; color: var(--muted); }
+  .chip:hover { color: var(--text); border-color: var(--faint); }
+  .chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .chips-label { font-size: 12px; font-weight: 600; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; align-self: center; margin-right: 2px; }
 
-  /* ---------- Section headers ---------- */
+  /* sections */
   .section-head { display: flex; align-items: center; justify-content: space-between; margin: 36px 0 16px; gap: 12px; flex-wrap: wrap; }
   .section-head h2 { margin: 0; font-size: 22px; letter-spacing: -.02em; }
   .section-head .sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
@@ -130,66 +100,49 @@
   .right-tools { display: flex; gap: 10px; align-items: center; }
   #sort { height: 38px; }
 
-  /* ---------- Cards ---------- */
+  /* cards */
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-  .card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    overflow: hidden; box-shadow: var(--shadow); cursor: pointer;
-    transition: transform .18s ease, box-shadow .18s ease;
-    display: flex; flex-direction: column;
-  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; display: flex; flex-direction: column; }
   .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
   .card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-  .art {
-    position: relative; height: 150px; overflow: hidden;
-    display: flex; align-items: flex-end; padding: 14px 16px; color: #fff;
-  }
-  .art .big {
-    position: absolute; right: -6px; bottom: -22px;
-    font-size: 110px; font-weight: 800; letter-spacing: -.05em; opacity: .18; line-height: 1;
-  }
+  .art { position: relative; height: 150px; overflow: hidden; display: flex; align-items: flex-end; padding: 14px 16px; color: #fff; }
+  .art .big { position: absolute; right: -6px; bottom: -22px; font-size: 110px; font-weight: 800; letter-spacing: -.05em; opacity: .18; line-height: 1; }
   .art .city { position: relative; font-size: 22px; font-weight: 700; letter-spacing: -.02em; text-shadow: 0 1px 8px rgba(0,0,0,.18); }
   .art .country { position: relative; font-size: 13px; opacity: .9; margin-left: 8px; margin-bottom: 4px; }
-  .badges { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
-  .pill {
-    display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px;
-    font-size: 12px; font-weight: 700; background: rgba(255,255,255,.95); color: var(--text); white-space: nowrap;
-  }
+  .badges { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; flex-wrap: wrap; max-width: 75%; }
+  .pill { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 700; background: rgba(255,255,255,.95); color: var(--text); white-space: nowrap; }
   .pill.save { background: var(--green); color: #fff; }
   .pill.mistake { background: var(--red); color: #fff; }
   .pill.cap { background: #fff; color: var(--accent); }
+  .pill.drop { background: #111827; color: #fff; }
+  .heart { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 50%; border: none; background: rgba(255,255,255,.92); font-size: 16px; line-height: 1; cursor: pointer; display: grid; place-items: center; color: var(--muted); }
+  .heart:hover { transform: scale(1.08); }
+  .heart.on { color: var(--red); }
   .card-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
   .route { font-weight: 600; font-size: 14px; }
   .route .arrow { color: var(--faint); margin: 0 6px; }
   .route .dest-code { color: var(--muted); font-weight: 500; }
   .when { color: var(--muted); font-size: 13px; }
+  .when .sep { color: var(--border); margin: 0 6px; }
+  .countdown { color: var(--accent); font-weight: 600; }
   .price-row { display: flex; align-items: baseline; gap: 8px; margin-top: auto; }
   .price { font-size: 26px; font-weight: 800; letter-spacing: -.02em; }
   .rt { color: var(--muted); font-size: 12px; }
   .was { color: var(--faint); text-decoration: line-through; font-size: 14px; margin-left: auto; }
-  .card .cta {
-    margin-top: 4px; height: 40px; border-radius: 10px; border: 1px solid var(--border);
-    background: var(--surface); font-weight: 600; font-size: 14px; color: var(--text); cursor: pointer;
-  }
+  .under-budget { font-size: 12px; font-weight: 600; color: var(--green); }
+  .card .cta { margin-top: 4px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); font-weight: 600; font-size: 14px; color: var(--text); cursor: pointer; }
   .card:hover .cta { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-  /* ---------- Price meter ---------- */
+  /* meter */
   .meter { position: relative; height: 8px; border-radius: 999px; background: linear-gradient(90deg, #10B981 0%, #A3E635 35%, #F59E0B 65%, #EF4444 100%); }
-  .meter .knob {
-    position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%;
-    background: #fff; border: 3px solid var(--text); transform: translate(-50%, -50%);
-    box-shadow: 0 1px 4px rgba(0,0,0,.2);
-  }
+  .meter .knob { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid var(--text); transform: translate(-50%, -50%); box-shadow: 0 1px 4px rgba(0,0,0,.2); }
   .meter-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--faint); margin-top: 6px; }
   .meter-pending { font-size: 12px; color: var(--faint); display: flex; align-items: center; gap: 8px; }
   .meter-pending .bar { flex: 1; min-width: 40px; height: 8px; border-radius: 999px; background: repeating-linear-gradient(90deg, #E5E7EB 0 8px, #F3F4F6 8px 16px); }
 
-  /* ---------- List view ---------- */
+  /* list */
   .list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-  .lrow {
-    display: grid; grid-template-columns: 52px 1.4fr 1fr 200px 170px 100px; gap: 16px; align-items: center;
-    padding: 12px 18px; border-bottom: 1px solid var(--border); cursor: pointer;
-  }
+  .lrow { display: grid; grid-template-columns: 52px 1.4fr 1fr 190px 160px 100px; gap: 16px; align-items: center; padding: 12px 18px; border-bottom: 1px solid var(--border); cursor: pointer; }
   .lrow:last-child { border-bottom: none; }
   .lrow:hover { background: #FAFAFB; }
   .swatch { width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 13px; }
@@ -201,42 +154,27 @@
   .list-head { background: var(--bg); cursor: default; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
   .list-head:hover { background: var(--bg); }
 
-  /* ---------- Region tiles ---------- */
+  /* regions */
   .regions { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
-  .region-tile {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 16px; cursor: pointer; box-shadow: var(--shadow); transition: box-shadow .18s, transform .18s;
-    text-align: left; font: inherit; color: inherit;
-  }
+  .region-tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; cursor: pointer; box-shadow: var(--shadow); transition: box-shadow .18s, transform .18s; text-align: left; font: inherit; color: inherit; }
   .region-tile:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
   .region-tile .name { font-weight: 600; }
   .region-tile .from { color: var(--muted); font-size: 13px; margin-top: 6px; }
   .region-tile .from b { color: var(--text); font-size: 18px; }
 
-  /* ---------- Empty ---------- */
-  .empty { text-align: center; padding: 70px 20px; color: var(--muted); background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); }
+  .empty { text-align: center; padding: 64px 20px; color: var(--muted); background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); }
   .empty strong { display: block; color: var(--text); font-size: 17px; margin-bottom: 6px; }
 
-  /* ---------- Modal ---------- */
-  .overlay {
-    position: fixed; inset: 0; z-index: 50; background: rgba(17,24,39,.45);
-    display: none; align-items: flex-start; justify-content: center; padding: 48px 20px; overflow-y: auto;
-  }
+  /* modal */
+  .overlay { position: fixed; inset: 0; z-index: 50; background: rgba(17,24,39,.45); display: none; align-items: flex-start; justify-content: center; padding: 48px 20px; overflow-y: auto; }
   .overlay.open { display: flex; }
-  .modal {
-    width: 100%; max-width: 760px; background: var(--surface); border-radius: 18px;
-    overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.25);
-    animation: pop .18s ease;
-  }
+  .modal { width: 100%; max-width: 780px; background: var(--surface); border-radius: 18px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.25); animation: pop .18s ease; }
   @keyframes pop { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
   .modal .art { height: 190px; padding: 22px 26px; }
   .modal .art .city { font-size: 32px; }
   .modal .art .big { font-size: 150px; }
-  .close {
-    position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%;
-    border: none; background: rgba(255,255,255,.9); font-size: 20px; cursor: pointer; color: var(--text);
-  }
-  .modal-body { padding: 24px 26px 28px; display: grid; gap: 22px; }
+  .close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; border: none; background: rgba(255,255,255,.9); font-size: 20px; cursor: pointer; color: var(--text); }
+  .modal-body { padding: 24px 26px 28px; display: grid; gap: 20px; }
   .detail-top { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
   .itin { display: grid; gap: 4px; }
   .itin .route { font-size: 17px; }
@@ -250,31 +188,34 @@
   .stat .k { font-size: 12px; color: var(--muted); }
   .stat .v { font-weight: 700; font-size: 16px; margin-top: 2px; }
   .spark { width: 100%; height: 70px; display: block; margin-top: 14px; }
+  .opt-table { display: grid; gap: 6px; }
+  .opt { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; padding: 9px 12px; border-radius: 10px; background: var(--bg); font-size: 14px; }
+  .opt.best { background: var(--accent-soft); }
+  .opt .len { color: var(--muted); font-size: 13px; }
+  .opt .p { font-weight: 700; }
   .book-grid { display: grid; gap: 10px; }
-  .book-primary {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    height: 50px; border-radius: 12px; background: var(--accent); color: #fff; text-decoration: none;
-    font-weight: 700; font-size: 15px;
-  }
+  .book-primary { display: flex; align-items: center; justify-content: center; gap: 8px; height: 50px; border-radius: 12px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 700; font-size: 15px; }
   .book-primary:hover { filter: brightness(1.08); }
   .book-alts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .book-alt {
-    display: flex; align-items: center; justify-content: center; height: 44px; border-radius: 12px;
-    border: 1px solid var(--border); text-decoration: none; font-weight: 600; font-size: 14px;
-  }
+  .book-alt { display: flex; align-items: center; justify-content: center; height: 44px; border-radius: 12px; border: 1px solid var(--border); text-decoration: none; font-weight: 600; font-size: 14px; }
   .book-alt:hover { border-color: var(--accent); color: var(--accent); }
   .fine { font-size: 12px; color: var(--faint); line-height: 1.5; }
+  .save-btn { height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); font-weight: 600; font-size: 14px; cursor: pointer; }
+  .save-btn.on { background: #FEF2F2; border-color: #FECACA; color: var(--red); }
 
   footer { text-align: center; color: var(--faint); font-size: 12px; padding: 40px 20px 50px; }
 
   @media (max-width: 900px) {
     .nav-inner, .wrap { padding: 0 16px; }
-    .nav-inner { gap: 14px; }
+    .nav-inner { gap: 10px; }
+    .brand { font-size: 16px; }
+    .brand-mark { width: 24px; height: 24px; font-size: 13px; }
+    .nav-links a { padding: 8px 10px; font-size: 14px; }
     .status { display: none; }
     .lrow { grid-template-columns: 44px 1fr auto; }
     .lrow .hide-sm { display: none; }
     .list-head { display: none; }
-    #q, #region, .price-field { width: 100%; }
+    #q, #region, #tripLength, #budget { width: 100%; }
     .field { flex: 1 1 100%; }
     .dates .control { flex: 1; width: auto; min-width: 0; }
     .btn-ghost { margin-left: 0; }
@@ -293,6 +234,7 @@
     <div class="nav-links">
       <a href="#/" data-route="home">Home</a>
       <a href="#/explore" data-route="explore">Explore</a>
+      <a href="#/saved" data-route="saved">Saved<span class="count-badge" id="savedCount">0</span></a>
     </div>
     <div class="status" id="status"><span class="dot"></span>Loading…</div>
   </div>
@@ -301,26 +243,24 @@
 <div class="wrap">
 
   <section class="hero" id="hero">
-    <div class="home-chip"><span class="code">ATL</span>Departing Hartsfield–Jackson Atlanta</div>
+    <div class="hero-row">
+      <div class="home-chip"><span class="code">ATL</span>Departing Hartsfield–Jackson Atlanta</div>
+      <button class="surprise" id="surprise">🎲 Surprise me</button>
+    </div>
     <h1>Cheap flights from Atlanta</h1>
-    <p id="heroSub">Scanned twice a day across 70 destinations.</p>
+    <p id="heroSub">Scanned twice a day.</p>
   </section>
 
   <div class="toolbar" id="toolbar">
-    <label class="field">
-      <span>Destination</span>
-      <input class="control" id="q" type="text" placeholder="City, country, or code">
-    </label>
-    <label class="field">
-      <span>Region</span>
-      <select class="control" id="region"></select>
-    </label>
-    <div class="field price-field">
-      <div class="price-head"><span>Max price</span><b id="priceLabel" class="num">Any</b></div>
-      <input type="range" id="maxPrice" min="50" step="25">
-    </div>
-    <div class="field">
-      <span>Departing between</span>
+    <label class="field"><span>Destination</span>
+      <input class="control" id="q" type="text" placeholder="City, country, or code"></label>
+    <label class="field"><span>Region</span>
+      <select class="control" id="region"></select></label>
+    <label class="field"><span>Trip length</span>
+      <select class="control" id="tripLength"></select></label>
+    <label class="field"><span>Budget</span>
+      <input class="control num" id="budget" type="number" min="0" step="25" placeholder="Any"></label>
+    <div class="field"><span>Departing between</span>
       <div class="dates">
         <input class="control" id="from" type="date">
         <input class="control" id="to" type="date">
@@ -328,13 +268,15 @@
     </div>
     <div class="toggles">
       <label class="toggle" id="dealsOnlyWrap"><input type="checkbox" id="dealsOnly">Deals only</label>
-      <label class="toggle" id="topOnlyWrap"><input type="checkbox" id="topOnly">Top deals (40%+ off)</label>
+      <label class="toggle" id="topOnlyWrap"><input type="checkbox" id="topOnly">Top deals</label>
     </div>
     <button class="btn-ghost" id="clear">Reset</button>
+    <div class="chips" id="presets"></div>
   </div>
 
   <main id="home"></main>
   <main id="explore" hidden></main>
+  <main id="saved" hidden></main>
 
 </div>
 
@@ -349,10 +291,12 @@
    Config
    ============================================================ */
 const ORIGIN = 'ATL';
-const TOP_DEAL_PCT = 40;      // matches config.json percent_off_threshold
-const MISTAKE_PCT = 60;       // "possible mistake fare" label
+const TOP_DEAL_PCT = 40;       // matches config.json percent_off_threshold
+const MISTAKE_PCT = 60;        // "possible mistake fare" label
 const MIN_SCANS_FOR_METER = 3;
-const STORE_KEY = 'atl-deals-prefs-v1';
+const DROP_BADGE_MIN = 20;     // $ drop since last scan worth showing
+const PREFS_KEY = 'atl-deals-prefs-v2';
+const SAVED_KEY = 'atl-deals-saved-v1';
 
 const REGIONS = [
   ['all', 'All regions'],
@@ -366,29 +310,50 @@ const REGIONS = [
 ];
 const COUNTRY_REGION = {
   'Mexico': 'carib', 'Dominican Republic': 'carib', 'Bahamas': 'carib', 'Jamaica': 'carib',
-  'Panama': 'latam', 'Colombia': 'latam', 'Peru': 'latam', 'Brazil': 'latam', 'Argentina': 'latam', 'Chile': 'latam',
-  'United Kingdom': 'europe', 'France': 'europe', 'Italy': 'europe', 'Spain': 'europe', 'Greece': 'europe',
-  'Netherlands': 'europe', 'Germany': 'europe', 'Switzerland': 'europe', 'Ireland': 'europe', 'Portugal': 'europe', 'Turkey': 'europe',
+  'Aruba': 'carib', 'Curacao': 'carib', 'Sint Maarten': 'carib', 'Barbados': 'carib',
+  'Antigua and Barbuda': 'carib', 'Turks and Caicos': 'carib', 'Cayman Islands': 'carib',
+  'Belize': 'carib', 'Costa Rica': 'carib', 'Guatemala': 'carib', 'Panama': 'carib',
+  'Colombia': 'latam', 'Ecuador': 'latam', 'Peru': 'latam', 'Chile': 'latam',
+  'Argentina': 'latam', 'Uruguay': 'latam', 'Brazil': 'latam',
+  'United Kingdom': 'europe', 'Ireland': 'europe', 'France': 'europe', 'Netherlands': 'europe',
+  'Belgium': 'europe', 'Germany': 'europe', 'Switzerland': 'europe', 'Austria': 'europe',
+  'Czechia': 'europe', 'Hungary': 'europe', 'Poland': 'europe', 'Denmark': 'europe',
+  'Sweden': 'europe', 'Norway': 'europe', 'Finland': 'europe', 'Iceland': 'europe',
+  'Portugal': 'europe', 'Spain': 'europe', 'Italy': 'europe', 'Greece': 'europe', 'Turkey': 'europe',
   'Canada': 'canada',
-  'Japan': 'asia', 'South Korea': 'asia', 'Hong Kong': 'asia', 'Singapore': 'asia',
-  'United Arab Emirates': 'mea', 'Qatar': 'mea', 'Israel': 'mea', 'South Africa': 'mea',
+  'Japan': 'asia', 'South Korea': 'asia', 'Taiwan': 'asia', 'Hong Kong': 'asia',
+  'Singapore': 'asia', 'Thailand': 'asia', 'Vietnam': 'asia', 'Philippines': 'asia',
+  'Malaysia': 'asia', 'India': 'asia', 'Australia': 'asia', 'New Zealand': 'asia', 'Fiji': 'asia',
+  'Israel': 'mea', 'United Arab Emirates': 'mea', 'Qatar': 'mea', 'Jordan': 'mea',
+  'Egypt': 'mea', 'Morocco': 'mea', 'Kenya': 'mea', 'Ghana': 'mea', 'Nigeria': 'mea',
+  'Ethiopia': 'mea', 'South Africa': 'mea',
 };
 
 /* ============================================================
    State
    ============================================================ */
-const DEFAULT_FILTERS = { q: '', region: 'all', maxPrice: null, from: '', to: '', dealsOnly: false, topOnly: false, sort: 'best', view: 'grid' };
-const S = { deals: [], history: {}, generatedAt: null, byCode: {}, f: { ...DEFAULT_FILTERS }, lastBase: null };
+const DEFAULT_FILTERS = {
+  q: '', region: 'all', tripLength: 'any', budget: null,
+  from: '', to: '', dealsOnly: false, topOnly: false,
+  preset: '', sort: 'best', view: 'grid',
+};
+const S = {
+  deals: [], history: {}, generatedAt: null, byCode: {},
+  f: { ...DEFAULT_FILTERS }, saved: new Set(), lastBase: '#/', lengths: [],
+};
 
 function loadPrefs() {
   try {
-    const raw = localStorage.getItem(STORE_KEY);
+    const raw = localStorage.getItem(PREFS_KEY);
     if (raw) S.f = { ...DEFAULT_FILTERS, ...JSON.parse(raw) };
-  } catch (e) { /* storage unavailable, use defaults */ }
+  } catch (e) {}
+  try {
+    const raw = localStorage.getItem(SAVED_KEY);
+    if (raw) S.saved = new Set(JSON.parse(raw));
+  } catch (e) {}
 }
-function savePrefs() {
-  try { localStorage.setItem(STORE_KEY, JSON.stringify(S.f)); } catch (e) {}
-}
+function savePrefs() { try { localStorage.setItem(PREFS_KEY, JSON.stringify(S.f)); } catch (e) {} }
+function saveSaved() { try { localStorage.setItem(SAVED_KEY, JSON.stringify([...S.saved])); } catch (e) {} }
 
 /* ============================================================
    Helpers
@@ -396,6 +361,7 @@ function savePrefs() {
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const money = n => '$' + Math.round(n).toLocaleString();
+const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
 function parseDate(s) {
   if (!s) return null;
@@ -408,13 +374,22 @@ function fmtDate(s, withYear) {
   if (!d) return '';
   return d.toLocaleDateString('en-US', withYear ? { month: 'short', day: 'numeric', year: 'numeric' } : { month: 'short', day: 'numeric' });
 }
-function tripDays(a, b) {
-  const x = parseDate(a), y = parseDate(b);
-  return x && y ? Math.round((y - x) / 86400000) : null;
+function daysUntil(s) {
+  const d = parseDate(s);
+  if (!d) return null;
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  return Math.round((d - today) / 86400000);
 }
-function timeAgo(iso) {
-  if (!iso) return null;
-  const mins = Math.floor((Date.now() - new Date(iso).getTime()) / 60000);
+function countdownText(s) {
+  const n = daysUntil(s);
+  if (n == null) return '';
+  if (n <= 0) return 'today';
+  if (n === 1) return 'tomorrow';
+  return `in ${n} days`;
+}
+function timeAgo(isoStr) {
+  if (!isoStr) return null;
+  const mins = Math.floor((Date.now() - new Date(isoStr).getTime()) / 60000);
   if (mins < 1) return 'just now';
   if (mins < 60) return mins + ' min ago';
   const h = Math.floor(mins / 60);
@@ -422,51 +397,61 @@ function timeAgo(iso) {
   const d = Math.floor(h / 24);
   return d + (d === 1 ? ' day ago' : ' days ago');
 }
-function regionOf(d) {
-  if (d.domestic) return 'domestic';
-  return COUNTRY_REGION[d.country] || 'other';
-}
-function regionName(key) {
-  const r = REGIONS.find(r => r[0] === key);
-  return r ? r[1] : 'Other';
-}
-
-// Deterministic color per destination so every card has its own look
-function hueFor(code) {
-  let h = 0;
-  for (const ch of code) h = (h * 31 + ch.charCodeAt(0)) % 360;
-  return h;
-}
-function artBg(code) {
-  const h = hueFor(code);
-  return `linear-gradient(135deg, hsl(${h} 70% 52%) 0%, hsl(${(h + 40) % 360} 75% 40%) 100%)`;
+function regionOf(d) { return d.domestic ? 'domestic' : (COUNTRY_REGION[d.country] || 'other'); }
+function regionName(key) { const r = REGIONS.find(r => r[0] === key); return r ? r[1] : 'Other'; }
+function lengthLabel(days) {
+  if (days == null) return '';
+  if (days <= 4) return 'Weekend';
+  if (days <= 9) return 'Week';
+  return 'Two weeks';
 }
 
-/* Price context from history.json. The scanner appends the current scan's
-   price to history before saving, so the last entry is "now". */
-function priceStats(d) {
+function hueFor(code) { let h = 0; for (const ch of code) h = (h * 31 + ch.charCodeAt(0)) % 360; return h; }
+function artBg(code) { const h = hueFor(code); return `linear-gradient(135deg, hsl(${h} 70% 52%) 0%, hsl(${(h + 40) % 360} 75% 40%) 100%)`; }
+
+/* Every date combination the scanner kept for this destination. Older
+   deals.json files have no options array, so fall back to the single
+   headline fare. */
+function optionsOf(d) {
+  if (Array.isArray(d.options) && d.options.length) return d.options;
+  return [{ price: d.price, dep: d.departure_date, ret: d.return_date, days: d.days ?? null }];
+}
+
+/* Cheapest option that satisfies the current date and trip-length filters. */
+function pickOption(d, f) {
+  const opts = optionsOf(d).filter(o => {
+    if (f.tripLength !== 'any' && String(o.days) !== String(f.tripLength)) return false;
+    if (f.from && o.dep && o.dep < f.from) return false;
+    if (f.to && o.dep && o.dep > f.to) return false;
+    return true;
+  });
+  if (!opts.length) return null;
+  return opts.reduce((a, b) => (b.price < a.price ? b : a));
+}
+
+function priceStats(d, price) {
   const pts = (S.history[d.destination] || []).map(p => p.price).filter(p => typeof p === 'number');
   const prior = pts.length > 1 ? pts.slice(0, -1) : [];
   const typical = prior.length >= 2 ? prior.reduce((a, b) => a + b, 0) / prior.length : null;
-  const all = pts.length ? pts : [d.price];
-  const min = Math.min(...all, d.price), max = Math.max(...all, d.price);
-  let savings = d.percent_off;
-  if (savings == null && typical) savings = Math.round((1 - d.price / typical) * 100);
-  return { pts, scans: pts.length, typical, min, max, savings };
+  const all = pts.length ? pts : [price];
+  const min = Math.min(...all, price), max = Math.max(...all, price);
+  const savings = typical ? Math.round((1 - price / typical) * 100) : null;
+  // Change since the previous scan, using the headline price both times.
+  const change = pts.length >= 2 ? pts[pts.length - 1] - pts[pts.length - 2] : null;
+  return { pts, scans: pts.length, typical, min, max, savings, change };
 }
 
 function badgesFor(d, st) {
   const out = [];
   if (st.savings != null && st.savings >= MISTAKE_PCT && st.scans >= 5) out.push(['mistake', 'Possible mistake fare']);
-  if (st.savings != null && st.savings >= 15) out.push(['save', `Save ${Math.round(st.savings)}%`]);
+  if (st.savings != null && st.savings >= 15) out.push(['save', `Save ${st.savings}%`]);
   else if (d.deal) out.push(['cap', 'Under price cap']);
+  if (st.change != null && st.change <= -DROP_BADGE_MIN) out.push(['drop', `↓ ${money(-st.change)}`]);
   return out;
 }
 
-/* Booking deep links, pre-filled with this route and these dates */
 function yymmdd(s) { return s ? s.slice(2).replace(/-/g, '') : ''; }
-function bookingLinks(d) {
-  const dest = d.destination, dep = d.departure_date, ret = d.return_date;
+function bookingLinks(dest, dep, ret) {
   const q = ret
     ? `Flights from ${ORIGIN} to ${dest} on ${dep} through ${ret}`
     : `One way flights from ${ORIGIN} to ${dest} on ${dep}`;
@@ -478,66 +463,115 @@ function bookingLinks(d) {
 }
 
 /* ============================================================
-   Filtering and sorting
+   Seasonal presets (only the ones our scan window can answer)
    ============================================================ */
-function filtered() {
-  const f = S.f;
-  const q = f.q.trim().toLowerCase();
-  const rows = S.deals.filter(d => {
-    if (q && !(`${d.city} ${d.country} ${d.destination}`.toLowerCase().includes(q))) return false;
-    if (f.region !== 'all' && regionOf(d) !== f.region) return false;
-    if (f.maxPrice != null && d.price > f.maxPrice) return false;
-    if (f.from && d.departure_date && d.departure_date < f.from) return false;
-    if (f.to && d.departure_date && d.departure_date > f.to) return false;
-    if (f.dealsOnly && !d.deal) return false;
-    if (f.topOnly) {
-      const s = priceStats(d).savings;
-      if (s == null || s < TOP_DEAL_PCT) return false;
-    }
+function buildPresets() {
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const y = today.getFullYear();
+  const all = [];
+
+  const add = (id, label, start, end) => all.push({ id, label, from: iso(start), to: iso(end) });
+  const plus = n => { const d = new Date(today); d.setDate(d.getDate() + n); return d; };
+
+  add('soon', 'Next 30 days', today, plus(30));
+  add('60', 'Next 2 months', today, plus(60));
+
+  // Thanksgiving: fourth Thursday of November
+  for (const yr of [y, y + 1]) {
+    const nov = new Date(yr, 10, 1);
+    const firstThu = 1 + ((4 - nov.getDay() + 7) % 7);
+    const tg = new Date(yr, 10, firstThu + 21);
+    add('tg' + yr, 'Thanksgiving', new Date(yr, 10, tg.getDate() - 7), new Date(yr, 10, tg.getDate() + 1));
+    add('winter' + yr, 'Winter break', new Date(yr, 11, 15), new Date(yr + 1, 0, 5));
+    add('spring' + (yr + 1), 'Spring break', new Date(yr + 1, 2, 1), new Date(yr + 1, 2, 31));
+    add('summer' + (yr + 1), 'Summer', new Date(yr + 1, 5, 1), new Date(yr + 1, 7, 31));
+  }
+
+  // Keep only presets that overlap dates we actually have fares for.
+  const deps = [];
+  S.deals.forEach(d => optionsOf(d).forEach(o => { if (o.dep) deps.push(o.dep); }));
+  if (!deps.length) return [];
+  const lo = deps.reduce((a, b) => (b < a ? b : a));
+  const hi = deps.reduce((a, b) => (b > a ? b : a));
+
+  const seen = new Set();
+  return all.filter(p => {
+    if (p.to < lo || p.from > hi) return false;
+    if (seen.has(p.label)) return false;
+    seen.add(p.label);
     return true;
   });
-  const sav = d => { const s = priceStats(d).savings; return s == null ? -999 : s; };
+}
+
+/* ============================================================
+   Filtering and sorting
+   ============================================================ */
+function rowsFor(scope) {
+  const f = S.f;
+  const q = f.q.trim().toLowerCase();
+  const out = [];
+
+  for (const d of S.deals) {
+    if (scope === 'saved' && !S.saved.has(d.destination)) continue;
+    if (q && !(`${d.city} ${d.country} ${d.destination}`.toLowerCase().includes(q))) continue;
+    if (f.region !== 'all' && regionOf(d) !== f.region) continue;
+
+    const opt = pickOption(d, f);
+    if (!opt) continue;
+    if (f.budget != null && opt.price > f.budget) continue;
+    if (f.dealsOnly && !d.deal) continue;
+
+    const st = priceStats(d, opt.price);
+    if (f.topOnly && (st.savings == null || st.savings < TOP_DEAL_PCT)) continue;
+
+    out.push({ d, opt, st });
+  }
+
   const sorters = {
-    best: (a, b) => (b.deal - a.deal) || (sav(b) - sav(a)) || (a.price - b.price),
-    price: (a, b) => a.price - b.price,
-    savings: (a, b) => (sav(b) - sav(a)) || (a.price - b.price),
-    soonest: (a, b) => (a.departure_date || '').localeCompare(b.departure_date || ''),
-    city: (a, b) => a.city.localeCompare(b.city),
+    best: (a, b) => (b.d.deal - a.d.deal) || ((b.st.savings ?? -999) - (a.st.savings ?? -999)) || (a.opt.price - b.opt.price),
+    price: (a, b) => a.opt.price - b.opt.price,
+    savings: (a, b) => ((b.st.savings ?? -999) - (a.st.savings ?? -999)) || (a.opt.price - b.opt.price),
+    drops: (a, b) => ((a.st.change ?? 0) - (b.st.change ?? 0)) || (a.opt.price - b.opt.price),
+    soonest: (a, b) => (a.opt.dep || '').localeCompare(b.opt.dep || ''),
+    city: (a, b) => a.d.city.localeCompare(b.d.city),
   };
-  return rows.sort(sorters[f.sort] || sorters.best);
+  return out.sort(sorters[S.f.sort] || sorters.best);
 }
 
 /* ============================================================
    Components
    ============================================================ */
-function meterHTML(d, st) {
+function meterHTML(price, st) {
   if (st.scans < MIN_SCANS_FOR_METER || st.max === st.min) {
     return `<div class="meter-pending"><div class="bar"></div>Building price history (${Math.min(st.scans, MIN_SCANS_FOR_METER)}/${MIN_SCANS_FOR_METER} scans)</div>`;
   }
-  const pos = Math.max(0, Math.min(100, ((d.price - st.min) / (st.max - st.min)) * 100));
+  const pos = Math.max(0, Math.min(100, ((price - st.min) / (st.max - st.min)) * 100));
   return `<div class="meter"><div class="knob" style="left:${pos}%"></div></div>
           <div class="meter-labels num"><span>Low ${money(st.min)}</span><span>High ${money(st.max)}</span></div>`;
 }
 
-function cardHTML(d) {
-  const st = priceStats(d);
-  const days = tripDays(d.departure_date, d.return_date);
+function cardHTML(row) {
+  const { d, opt, st } = row;
   const badges = badgesFor(d, st).map(([c, t]) => `<span class="pill ${c}">${esc(t)}</span>`).join('');
+  const isSaved = S.saved.has(d.destination);
+  const budgetLeft = S.f.budget != null ? S.f.budget - opt.price : null;
   return `
   <article class="card" tabindex="0" data-code="${esc(d.destination)}">
     <div class="art" style="background:${artBg(d.destination)}">
       <div class="badges">${badges}</div>
+      <button class="heart${isSaved ? ' on' : ''}" data-heart="${esc(d.destination)}" aria-label="${isSaved ? 'Remove from saved' : 'Save'}">${isSaved ? '♥' : '♡'}</button>
       <div class="big">${esc(d.destination)}</div>
       <span class="city">${esc(d.city)}</span>
     </div>
     <div class="card-body">
       <div class="route">${ORIGIN}<span class="arrow">→</span>${esc(d.city)}, ${esc(d.country)} <span class="dest-code">(${esc(d.destination)})</span></div>
-      <div class="when">${fmtDate(d.departure_date)}${d.return_date ? ' – ' + fmtDate(d.return_date) : ''}${days ? ` · ${days}-day trip` : ''}</div>
+      <div class="when">${fmtDate(opt.dep)}${opt.ret ? ' – ' + fmtDate(opt.ret) : ''}${opt.days ? `<span class="sep">|</span>${opt.days}-day` : ''}<span class="sep">|</span><span class="countdown">${countdownText(opt.dep)}</span></div>
       <div class="price-row">
-        <span class="price num">${money(d.price)}</span><span class="rt">${d.return_date ? 'round trip' : 'one way'}</span>
-        ${st.typical && st.typical > d.price ? `<span class="was num">${money(st.typical)}</span>` : ''}
+        <span class="price num">${money(opt.price)}</span><span class="rt">${opt.ret ? 'round trip' : 'one way'}</span>
+        ${st.typical && st.typical > opt.price ? `<span class="was num">${money(st.typical)}</span>` : ''}
       </div>
-      ${meterHTML(d, st)}
+      ${budgetLeft != null && budgetLeft >= 0 ? `<div class="under-budget num">${money(budgetLeft)} under budget</div>` : ''}
+      ${meterHTML(opt.price, st)}
       <button class="cta" tabindex="-1">View deal</button>
     </div>
   </article>`;
@@ -545,41 +579,45 @@ function cardHTML(d) {
 
 function listHTML(rows) {
   const head = `<div class="lrow list-head"><div></div><div>Destination</div><div class="hide-sm">Dates</div><div class="hide-sm">Price position</div><div class="hide-sm">Tags</div><div style="text-align:right">Price</div></div>`;
-  const body = rows.map(d => {
-    const st = priceStats(d);
+  const body = rows.map(({ d, opt, st }) => {
     const tags = badgesFor(d, st).map(([c, t]) => `<span class="pill">${esc(t)}</span>`).join('');
     return `
     <div class="lrow" tabindex="0" data-code="${esc(d.destination)}">
       <div class="swatch" style="background:${artBg(d.destination)}">${esc(d.destination)}</div>
-      <div><div class="city-name">${esc(d.city)}</div><div class="muted">${esc(d.country)}</div></div>
-      <div class="hide-sm muted">${fmtDate(d.departure_date)}${d.return_date ? ' – ' + fmtDate(d.return_date) : ''}</div>
-      <div class="hide-sm">${meterHTML(d, st)}</div>
+      <div><div class="city-name">${esc(d.city)}${S.saved.has(d.destination) ? ' ♥' : ''}</div><div class="muted">${esc(d.country)}</div></div>
+      <div class="hide-sm muted">${fmtDate(opt.dep)}${opt.ret ? ' – ' + fmtDate(opt.ret) : ''}${opt.days ? ` · ${opt.days}d` : ''}</div>
+      <div class="hide-sm">${meterHTML(opt.price, st)}</div>
       <div class="hide-sm tags">${tags}</div>
-      <div class="price num">${money(d.price)}</div>
+      <div class="price num">${money(opt.price)}</div>
     </div>`;
   }).join('');
   return `<div class="list">${head}${body}</div>`;
 }
 
-function emptyHTML() {
+function emptyHTML(kind) {
+  if (kind === 'saved') {
+    return `<div class="empty"><strong>Nothing saved yet</strong>Tap the heart on any destination to keep it here. Saved places live in this browser only.</div>`;
+  }
   if (!S.deals.length) {
     return `<div class="empty"><strong>No scan data yet</strong>Run "Scan flight deals" from the repo's Actions tab, then refresh this page.</div>`;
   }
-  return `<div class="empty"><strong>Nothing matches those filters</strong>Try a higher max price, wider dates, or a different region.</div>`;
+  return `<div class="empty"><strong>Nothing matches those filters</strong>Try a bigger budget, wider dates, or a different trip length.</div>`;
 }
 
 /* ============================================================
    Views
    ============================================================ */
 function renderHome() {
-  const rows = filtered();
-  const top = rows.slice(0, 8);
+  const rows = rowsFor('all');
   const flagged = S.deals.filter(d => d.deal).length;
 
+  const movers = rows.filter(r => r.st.change != null && r.st.change <= -DROP_BADGE_MIN)
+    .sort((a, b) => a.st.change - b.st.change).slice(0, 4);
+
   const regionStats = REGIONS.slice(1).map(([key, name]) => {
-    const inRegion = S.deals.filter(d => regionOf(d) === key);
+    const inRegion = rows.filter(r => regionOf(r.d) === key);
     if (!inRegion.length) return '';
-    const cheapest = Math.min(...inRegion.map(d => d.price));
+    const cheapest = Math.min(...inRegion.map(r => r.opt.price));
     return `<button class="region-tile" data-region="${key}">
       <div class="name">${esc(name)}</div>
       <div class="from">from <b class="num">${money(cheapest)}</b> · ${inRegion.length} ${inRegion.length === 1 ? 'place' : 'places'}</div>
@@ -591,24 +629,30 @@ function renderHome() {
       <div><h2>Top deals right now</h2><div class="sub">${flagged} flagged out of ${S.deals.length} destinations scanned</div></div>
       <a class="link-btn" href="#/explore">Browse all ${rows.length} results →</a>
     </div>
-    ${top.length ? `<div class="grid">${top.map(cardHTML).join('')}</div>` : emptyHTML()}
+    ${rows.length ? `<div class="grid">${rows.slice(0, 8).map(cardHTML).join('')}</div>` : emptyHTML()}
+
+    ${movers.length ? `
+    <div class="section-head"><div><h2>Biggest drops since the last scan</h2><div class="sub">Fares that fell the most between the two most recent scans</div></div></div>
+    <div class="grid">${movers.map(cardHTML).join('')}</div>` : ''}
+
     ${regionStats ? `
-    <div class="section-head"><div><h2>Explore by region</h2><div class="sub">Cheapest fare in each region from the latest scan</div></div></div>
+    <div class="section-head"><div><h2>Explore by region</h2><div class="sub">Cheapest fare in each region that matches your filters</div></div></div>
     <div class="regions">${regionStats}</div>` : ''}
   `;
 }
 
-function renderExplore() {
-  const rows = filtered();
+function renderCollection(elId, title, scope) {
+  const rows = rowsFor(scope);
   const f = S.f;
-  $('explore').innerHTML = `
+  $(elId).innerHTML = `
     <div class="section-head">
-      <div><h2>All destinations</h2><div class="sub">${rows.length} of ${S.deals.length} shown</div></div>
+      <div><h2>${title}</h2><div class="sub">${rows.length} ${rows.length === 1 ? 'result' : 'results'}${scope === 'all' ? ` of ${S.deals.length} destinations` : ''}</div></div>
       <div class="right-tools">
         <select class="control" id="sort">
           <option value="best">Sort: Best first</option>
           <option value="price">Sort: Lowest price</option>
           <option value="savings">Sort: Biggest savings</option>
+          <option value="drops">Sort: Biggest recent drop</option>
           <option value="soonest">Sort: Soonest departure</option>
           <option value="city">Sort: City A–Z</option>
         </select>
@@ -618,22 +662,25 @@ function renderExplore() {
         </div>
       </div>
     </div>
-    ${!rows.length ? emptyHTML() : f.view === 'list' ? listHTML(rows) : `<div class="grid">${rows.map(cardHTML).join('')}</div>`}
+    ${!rows.length ? emptyHTML(scope === 'saved' && !S.saved.size ? 'saved' : '') :
+      f.view === 'list' ? listHTML(rows) : `<div class="grid">${rows.map(cardHTML).join('')}</div>`}
   `;
-  $('sort').value = f.sort;
+  const sel = $('sort');
+  if (sel) sel.value = f.sort;
 }
 
 function renderDetail(code) {
   const d = S.byCode[code];
   if (!d) { closeDetail(); return; }
-  const st = priceStats(d);
-  const days = tripDays(d.departure_date, d.return_date);
-  const links = bookingLinks(d);
+  const opt = pickOption(d, S.f) || optionsOf(d)[0];
+  const st = priceStats(d, opt.price);
+  const links = bookingLinks(d.destination, opt.dep, opt.ret);
   const badges = badgesFor(d, st).map(([c, t]) => `<span class="pill ${c}">${esc(t)}</span>`).join('');
+  const isSaved = S.saved.has(d.destination);
 
   let note;
-  if (st.typical && st.typical > d.price) {
-    note = `<div class="savings-note">This fare is ${money(st.typical - d.price)} lower than the typical price on this route (${money(st.typical)} average over ${st.scans - 1} earlier scans).</div>`;
+  if (st.typical && st.typical > opt.price) {
+    note = `<div class="savings-note">This fare is ${money(st.typical - opt.price)} lower than the typical price on this route (${money(st.typical)} average over ${st.scans - 1} earlier scans).</div>`;
   } else if (st.typical) {
     note = `<div class="savings-note neutral">This is about the usual price for this route (${money(st.typical)} average over ${st.scans - 1} earlier scans).</div>`;
   } else {
@@ -656,6 +703,28 @@ function renderDetail(code) {
     </svg>`;
   }
 
+  // Other date/length combinations worth showing
+  const others = optionsOf(d)
+    .filter(o => !(o.dep === opt.dep && o.days === opt.days))
+    .slice(0, 6);
+  const optionsBlock = others.length ? `
+    <div class="box">
+      <h3>Other dates we found</h3>
+      <div class="opt-table">
+        <div class="opt best">
+          <div>${fmtDate(opt.dep)}${opt.ret ? ' – ' + fmtDate(opt.ret) : ''} <span class="len">· ${opt.days ? opt.days + '-day' : ''} ${lengthLabel(opt.days)}</span></div>
+          <div class="len">shown above</div>
+          <div class="p num">${money(opt.price)}</div>
+        </div>
+        ${others.map(o => `
+        <div class="opt">
+          <div>${fmtDate(o.dep)}${o.ret ? ' – ' + fmtDate(o.ret) : ''} <span class="len">· ${o.days ? o.days + '-day' : ''}</span></div>
+          <div class="len">${countdownText(o.dep)}</div>
+          <div class="p num">${money(o.price)}</div>
+        </div>`).join('')}
+      </div>
+    </div>` : '';
+
   $('modal').innerHTML = `
     <div class="art" style="background:${artBg(d.destination)}">
       <div class="badges">${badges}</div>
@@ -667,12 +736,12 @@ function renderDetail(code) {
       <div class="detail-top">
         <div class="itin">
           <div class="route">${ORIGIN} Atlanta<span class="arrow">→</span>${esc(d.city)} (${esc(d.destination)})</div>
-          <div class="when">Depart ${fmtDate(d.departure_date, true)}${d.return_date ? ` · Return ${fmtDate(d.return_date, true)}` : ''}</div>
-          <div class="when">${days ? days + '-day trip · ' : ''}${esc(regionName(regionOf(d)))}</div>
+          <div class="when">Depart ${fmtDate(opt.dep, true)}${opt.ret ? ` · Return ${fmtDate(opt.ret, true)}` : ''}</div>
+          <div class="when">${opt.days ? opt.days + '-day trip · ' : ''}${esc(regionName(regionOf(d)))} · leaves <span class="countdown">${countdownText(opt.dep)}</span></div>
         </div>
         <div class="detail-price">
-          <div class="price num">${money(d.price)}</div>
-          <div class="rt">${d.return_date ? 'round trip' : 'one way'}, per person${st.typical && st.typical > d.price ? ` · <s class="num">${money(st.typical)}</s>` : ''}</div>
+          <div class="price num">${money(opt.price)}</div>
+          <div class="rt">${opt.ret ? 'round trip' : 'one way'}, per person${st.typical && st.typical > opt.price ? ` · <s class="num">${money(st.typical)}</s>` : ''}</div>
         </div>
       </div>
 
@@ -680,7 +749,7 @@ function renderDetail(code) {
 
       <div class="box">
         <h3>Price history on this route</h3>
-        ${meterHTML(d, st)}
+        ${meterHTML(opt.price, st)}
         ${spark}
         <div class="stats">
           <div class="stat"><div class="k">Lowest seen</div><div class="v num">${money(st.min)}</div></div>
@@ -689,12 +758,15 @@ function renderDetail(code) {
         </div>
       </div>
 
+      ${optionsBlock}
+
       <div class="book-grid">
         <a class="book-primary" href="${links.google}" target="_blank" rel="noopener">Book on Google Flights ↗</a>
         <div class="book-alts">
           <a class="book-alt" href="${links.kayak}" target="_blank" rel="noopener">Check Kayak ↗</a>
           <a class="book-alt" href="${links.skyscanner}" target="_blank" rel="noopener">Check Skyscanner ↗</a>
         </div>
+        <button class="save-btn${isSaved ? ' on' : ''}" data-heart="${esc(d.destination)}">${isSaved ? '♥ Saved' : '♡ Save this destination'}</button>
         <div class="fine">Each link opens a search already filled in with this route and these dates, where you can see airlines, stops, times and baggage before booking. Prices change often, so the fare may differ a little from what's shown here. Scanned ${esc(timeAgo(d.scanned_at) || 'recently')}.</div>
       </div>
     </div>
@@ -709,9 +781,7 @@ function closeDetail() {
   $('overlay').classList.remove('open');
   $('overlay').setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
-  if (location.hash.startsWith('#/deal/')) {
-    history.replaceState(null, '', S.lastBase || '#/');
-  }
+  if (location.hash.startsWith('#/deal/')) history.replaceState(null, '', S.lastBase || '#/');
 }
 
 function renderStatus() {
@@ -721,90 +791,128 @@ function renderStatus() {
   $('status').innerHTML = ago
     ? `<span class="dot${stale ? ' stale' : ''}"></span><b class="num">${flagged}</b>&nbsp;deals flagged · last scanned ${ago}`
     : `<span class="dot stale"></span>Waiting for first scan`;
+  $('savedCount').textContent = S.saved.size;
 }
 
 /* ============================================================
    Routing
    ============================================================ */
-function showPage(isExplore) {
-  $('home').hidden = isExplore;
-  $('explore').hidden = !isExplore;
-  $('hero').hidden = isExplore;
-  document.querySelectorAll('.nav-links a').forEach(a =>
-    a.classList.toggle('active', a.dataset.route === (isExplore ? 'explore' : 'home')));
-  isExplore ? renderExplore() : renderHome();
+function showPage(page) {
+  $('home').hidden = page !== 'home';
+  $('explore').hidden = page !== 'explore';
+  $('saved').hidden = page !== 'saved';
+  $('hero').hidden = page !== 'home';
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.route === page));
+  if (page === 'home') renderHome();
+  else if (page === 'explore') renderCollection('explore', 'All destinations', 'all');
+  else renderCollection('saved', 'Saved destinations', 'saved');
+}
+
+function currentPage() {
+  const parts = (location.hash || '#/').replace(/^#\//, '').split('/');
+  if (parts[0] === 'explore') return 'explore';
+  if (parts[0] === 'saved') return 'saved';
+  return 'home';
 }
 
 function route() {
-  const h = location.hash || '#/';
-  const parts = h.replace(/^#\//, '').split('/');
+  const parts = (location.hash || '#/').replace(/^#\//, '').split('/');
   if (parts[0] === 'deal') {
-    if (!S.lastBase) { S.lastBase = '#/'; showPage(false); }
+    showPage(currentPageFromBase());
     renderDetail(decodeURIComponent(parts[1] || ''));
     return;
   }
-  S.lastBase = h;
+  S.lastBase = location.hash || '#/';
   if ($('overlay').classList.contains('open')) closeDetail();
-  showPage(parts[0] === 'explore');
+  showPage(currentPage());
+}
+function currentPageFromBase() {
+  const b = (S.lastBase || '#/').replace(/^#\//, '').split('/')[0];
+  return b === 'explore' ? 'explore' : b === 'saved' ? 'saved' : 'home';
 }
 
 function rerender() {
   savePrefs();
-  $('explore').hidden ? renderHome() : renderExplore();
+  showPage(currentPage());
 }
 
 /* ============================================================
-   Toolbar wiring
+   Toolbar
    ============================================================ */
 function setupToolbar() {
   $('region').innerHTML = REGIONS.map(([k, n]) => `<option value="${k}">${n}</option>`).join('');
 
-  const maxSeen = S.deals.length ? Math.max(...S.deals.map(d => d.price)) : 2000;
-  const top = Math.max(100, Math.ceil(maxSeen / 50) * 50);
-  const slider = $('maxPrice');
-  slider.max = top;
+  const lengths = [...new Set(S.deals.flatMap(d => optionsOf(d).map(o => o.days)).filter(n => n != null))].sort((a, b) => a - b);
+  S.lengths = lengths;
+  $('tripLength').innerHTML = `<option value="any">Any length</option>` +
+    lengths.map(n => `<option value="${n}">${lengthLabel(n)} (${n} days)</option>`).join('');
 
-  const syncFromState = () => {
+  const presets = buildPresets();
+  $('presets').innerHTML = presets.length
+    ? `<span class="chips-label">When</span>` + presets.map(p =>
+        `<button class="chip" data-preset="${p.id}" data-from="${p.from}" data-to="${p.to}">${esc(p.label)}</button>`).join('')
+    : '';
+
+  const sync = () => {
     const f = S.f;
     $('q').value = f.q;
     $('region').value = f.region;
-    slider.value = f.maxPrice == null ? top : Math.min(f.maxPrice, top);
-    $('priceLabel').textContent = f.maxPrice == null ? 'Any' : 'Under ' + money(f.maxPrice);
+    $('tripLength').value = f.tripLength;
+    $('budget').value = f.budget == null ? '' : f.budget;
     $('from').value = f.from;
     $('to').value = f.to;
     $('dealsOnly').checked = f.dealsOnly;
     $('topOnly').checked = f.topOnly;
     $('dealsOnlyWrap').classList.toggle('on', f.dealsOnly);
     $('topOnlyWrap').classList.toggle('on', f.topOnly);
+    document.querySelectorAll('[data-preset]').forEach(c => c.classList.toggle('on', c.dataset.preset === f.preset));
   };
-  syncFromState();
+  sync();
+  S.syncToolbar = sync;
 
   $('q').addEventListener('input', e => { S.f.q = e.target.value; rerender(); });
   $('region').addEventListener('change', e => { S.f.region = e.target.value; rerender(); });
-  slider.addEventListener('input', e => {
-    const v = Number(e.target.value);
-    S.f.maxPrice = v >= top ? null : v;
-    $('priceLabel').textContent = S.f.maxPrice == null ? 'Any' : 'Under ' + money(v);
+  $('tripLength').addEventListener('change', e => { S.f.tripLength = e.target.value; rerender(); });
+  $('budget').addEventListener('input', e => {
+    const v = parseFloat(e.target.value);
+    S.f.budget = isNaN(v) || v <= 0 ? null : v;
     rerender();
   });
-  $('from').addEventListener('change', e => { S.f.from = e.target.value; rerender(); });
-  $('to').addEventListener('change', e => { S.f.to = e.target.value; rerender(); });
-  $('dealsOnly').addEventListener('change', e => {
-    S.f.dealsOnly = e.target.checked; $('dealsOnlyWrap').classList.toggle('on', e.target.checked); rerender();
-  });
-  $('topOnly').addEventListener('change', e => {
-    S.f.topOnly = e.target.checked; $('topOnlyWrap').classList.toggle('on', e.target.checked); rerender();
-  });
+  $('from').addEventListener('change', e => { S.f.from = e.target.value; S.f.preset = ''; sync(); rerender(); });
+  $('to').addEventListener('change', e => { S.f.to = e.target.value; S.f.preset = ''; sync(); rerender(); });
+  $('dealsOnly').addEventListener('change', e => { S.f.dealsOnly = e.target.checked; sync(); rerender(); });
+  $('topOnly').addEventListener('change', e => { S.f.topOnly = e.target.checked; sync(); rerender(); });
   $('clear').addEventListener('click', () => {
     const { sort, view } = S.f;
     S.f = { ...DEFAULT_FILTERS, sort, view };
-    syncFromState();
-    rerender();
+    sync(); rerender();
   });
 }
 
-/* Delegated clicks: cards, list rows, region tiles, view toggle */
+/* ============================================================
+   Events
+   ============================================================ */
 document.addEventListener('click', e => {
+  const heart = e.target.closest('[data-heart]');
+  if (heart) {
+    e.stopPropagation();
+    const code = heart.dataset.heart;
+    S.saved.has(code) ? S.saved.delete(code) : S.saved.add(code);
+    saveSaved();
+    renderStatus();
+    if ($('overlay').classList.contains('open')) renderDetail(code); else rerender();
+    return;
+  }
+  const preset = e.target.closest('[data-preset]');
+  if (preset) {
+    const on = S.f.preset === preset.dataset.preset;
+    S.f.preset = on ? '' : preset.dataset.preset;
+    S.f.from = on ? '' : preset.dataset.from;
+    S.f.to = on ? '' : preset.dataset.to;
+    S.syncToolbar();
+    rerender();
+    return;
+  }
   const tile = e.target.closest('.region-tile');
   if (tile) {
     S.f.region = tile.dataset.region;
@@ -816,8 +924,16 @@ document.addEventListener('click', e => {
   const viewBtn = e.target.closest('[data-view]');
   if (viewBtn) { S.f.view = viewBtn.dataset.view; rerender(); return; }
   const item = e.target.closest('[data-code]');
-  if (item) { location.hash = '#/deal/' + encodeURIComponent(item.dataset.code); }
+  if (item) location.hash = '#/deal/' + encodeURIComponent(item.dataset.code);
 });
+
+$('surprise').addEventListener('click', () => {
+  const rows = rowsFor('all');
+  const pool = rows.filter(r => r.d.deal);
+  const pick = (pool.length ? pool : rows)[Math.floor(Math.random() * (pool.length || rows.length))];
+  if (pick) location.hash = '#/deal/' + encodeURIComponent(pick.d.destination);
+});
+
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && $('overlay').classList.contains('open')) { closeDetail(); return; }
   if (e.key === 'Enter' && e.target.closest) {

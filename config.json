@@ -7,8 +7,8 @@
   "re_alert_after_days": 14,
   "re_alert_price_drop_ratio": 0.95,
   "search_lead_days": 3,
-  "search_window_days": 60,
-  "round_trip": true,
-  "trip_duration_days": 6,
-  "seconds_between_requests": 1.5
+  "search_window_days": 180,
+  "trip_lengths": [3, 6, 13],
+  "max_options_per_destination": 40,
+  "seconds_between_requests": 1.2
 }
