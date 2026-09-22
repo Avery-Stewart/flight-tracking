@@ -160,7 +160,9 @@ def run_fli_dates(origin, destination, start_date, end_date, config):
 
     if data is None:
         detail = result.stderr.strip() or result.stdout.strip()
-        return None, f"exit code {result.returncode}: {detail[:200]}"
+        # Python tracebacks put the actual error on the LAST line, not the
+        # first, so grab the tail rather than the head.
+        return None, f"exit code {result.returncode}: {detail[-300:]}"
 
     if not data.get("success", False):
         err = data.get("error", {}) or {}
