@@ -3,4 +3,7 @@ pydantic
 curl_cffi
 httpx
 typer
+click
 rich
+shellingham
+typing-extensions
