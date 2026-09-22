@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-22T03:20:42.528886+00:00",
+  "generated_at": "2026-09-22T15:57:19.821285+00:00",
   "origin": "ATL",
   "deals": [
     {
@@ -12,7 +12,7 @@
       "price": 38.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "PHL",
@@ -24,7 +24,7 @@
       "price": 38.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "TPA",
@@ -36,7 +36,7 @@
       "price": 38.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "IAH",
@@ -48,7 +48,7 @@
       "price": 43.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "CVG",
@@ -60,19 +60,19 @@
       "price": 43.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "CLE",
       "city": "Cleveland",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-13",
-      "return_date": "2026-10-19",
+      "departure_date": "2026-10-14",
+      "return_date": "2026-10-20",
       "price": 64.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "DFW",
@@ -84,31 +84,31 @@
       "price": 66.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "RDU",
       "city": "Raleigh",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
+      "departure_date": "2026-10-22",
+      "return_date": "2026-10-28",
       "price": 66.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "EWR",
       "city": "Newark",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
+      "departure_date": "2026-11-04",
+      "return_date": "2026-11-10",
       "price": 68.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "MIA",
@@ -120,43 +120,55 @@
       "price": 80.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "MSP",
       "city": "Minneapolis",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
+      "departure_date": "2026-10-28",
+      "return_date": "2026-11-03",
       "price": 88.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "BWI",
       "city": "Baltimore",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
+      "departure_date": "2026-10-28",
+      "return_date": "2026-11-03",
       "price": 88.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "DTW",
       "city": "Detroit",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
+      "departure_date": "2026-10-22",
+      "return_date": "2026-10-28",
       "price": 90.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "LGA",
+      "city": "New York",
+      "country": "United States",
+      "domestic": true,
+      "departure_date": "2026-10-28",
+      "return_date": "2026-11-03",
+      "price": 92.0,
+      "percent_off": null,
+      "deal": true,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "DEN",
@@ -168,7 +180,7 @@
       "price": 108.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "AUS",
@@ -180,31 +192,19 @@
       "price": 108.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "SJU",
       "city": "San Juan",
       "country": "Puerto Rico",
       "domestic": true,
-      "departure_date": "2026-10-24",
-      "return_date": "2026-10-30",
-      "price": 108.0,
-      "percent_off": null,
-      "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "LGA",
-      "city": "New York",
-      "country": "United States",
-      "domestic": true,
       "departure_date": "2026-10-28",
       "return_date": "2026-11-03",
-      "price": 110.0,
+      "price": 122.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "LAS",
@@ -216,7 +216,7 @@
       "price": 124.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "BNA",
@@ -228,7 +228,7 @@
       "price": 133.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "PHX",
@@ -240,7 +240,7 @@
       "price": 140.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "CLT",
@@ -252,7 +252,19 @@
       "price": 140.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "JFK",
+      "city": "New York",
+      "country": "United States",
+      "domestic": true,
+      "departure_date": "2026-11-04",
+      "return_date": "2026-11-10",
+      "price": 148.0,
+      "percent_off": null,
+      "deal": true,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "ORD",
@@ -264,43 +276,31 @@
       "price": 148.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "CUN",
       "city": "Cancun",
       "country": "Mexico",
       "domestic": false,
-      "departure_date": "2026-11-15",
-      "return_date": "2026-11-21",
-      "price": 336.0,
+      "departure_date": "2026-11-14",
+      "return_date": "2026-11-20",
+      "price": 346.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "YVR",
       "city": "Vancouver",
       "country": "Canada",
       "domestic": false,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
-      "price": 351.0,
+      "departure_date": "2026-10-22",
+      "return_date": "2026-10-28",
+      "price": 350.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "PUJ",
-      "city": "Punta Cana",
-      "country": "Dominican Republic",
-      "domestic": false,
-      "departure_date": "2026-10-24",
-      "return_date": "2026-10-30",
-      "price": 355.0,
-      "percent_off": null,
-      "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "MEX",
@@ -312,19 +312,31 @@
       "price": 369.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "NAS",
       "city": "Nassau",
       "country": "Bahamas",
       "domestic": false,
-      "departure_date": "2026-10-30",
-      "return_date": "2026-11-05",
+      "departure_date": "2026-10-13",
+      "return_date": "2026-10-19",
       "price": 375.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "PUJ",
+      "city": "Punta Cana",
+      "country": "Dominican Republic",
+      "domestic": false,
+      "departure_date": "2026-10-18",
+      "return_date": "2026-10-24",
+      "price": 378.0,
+      "percent_off": null,
+      "deal": true,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "MBJ",
@@ -336,7 +348,7 @@
       "price": 380.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "YYZ",
@@ -348,19 +360,19 @@
       "price": 381.0,
       "percent_off": null,
       "deal": true,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "MCI",
       "city": "Kansas City",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-28",
-      "return_date": "2026-11-03",
+      "departure_date": "2026-11-11",
+      "return_date": "2026-11-17",
       "price": 155.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "LAX",
@@ -372,7 +384,7 @@
       "price": 163.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "SLC",
@@ -384,59 +396,23 @@
       "price": 163.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "JFK",
-      "city": "New York",
-      "country": "United States",
-      "domestic": true,
-      "departure_date": "2026-11-04",
-      "return_date": "2026-11-10",
-      "price": 168.0,
-      "percent_off": null,
-      "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "SAT",
-      "city": "San Antonio",
-      "country": "United States",
-      "domestic": true,
-      "departure_date": "2026-10-13",
-      "return_date": "2026-10-19",
-      "price": 178.0,
-      "percent_off": null,
-      "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "SAN",
-      "city": "San Diego",
-      "country": "United States",
-      "domestic": true,
-      "departure_date": "2026-10-18",
-      "return_date": "2026-10-24",
-      "price": 190.0,
-      "percent_off": null,
-      "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "PIT",
       "city": "Pittsburgh",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-11-04",
-      "return_date": "2026-11-10",
-      "price": 191.0,
+      "departure_date": "2026-11-11",
+      "return_date": "2026-11-17",
+      "price": 184.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
-      "destination": "SFO",
-      "city": "San Francisco",
+      "destination": "SAT",
+      "city": "San Antonio",
       "country": "United States",
       "domestic": true,
       "departure_date": "2026-10-21",
@@ -444,55 +420,103 @@
       "price": 195.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "SFO",
+      "city": "San Francisco",
+      "country": "United States",
+      "domestic": true,
+      "departure_date": "2026-10-27",
+      "return_date": "2026-11-02",
+      "price": 204.0,
+      "percent_off": null,
+      "deal": false,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "SAN",
+      "city": "San Diego",
+      "country": "United States",
+      "domestic": true,
+      "departure_date": "2026-11-01",
+      "return_date": "2026-11-07",
+      "price": 205.0,
+      "percent_off": null,
+      "deal": false,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "BOS",
       "city": "Boston",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
+      "departure_date": "2026-10-14",
+      "return_date": "2026-10-20",
       "price": 228.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "PDX",
       "city": "Portland",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
-      "price": 277.0,
+      "departure_date": "2026-11-04",
+      "return_date": "2026-11-10",
+      "price": 275.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "SEA",
       "city": "Seattle",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
+      "departure_date": "2026-10-20",
+      "return_date": "2026-10-26",
       "price": 278.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "HNL",
+      "city": "Honolulu",
+      "country": "United States",
+      "domestic": true,
+      "departure_date": "2026-10-28",
+      "return_date": "2026-11-03",
+      "price": 533.0,
+      "percent_off": null,
+      "deal": false,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "PTY",
+      "city": "Panama City",
+      "country": "Panama",
+      "domestic": false,
+      "departure_date": "2026-10-20",
+      "return_date": "2026-10-26",
+      "price": 560.0,
+      "percent_off": null,
+      "deal": false,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "OGG",
       "city": "Maui",
       "country": "United States",
       "domestic": true,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
-      "price": 544.0,
+      "departure_date": "2026-10-28",
+      "return_date": "2026-11-03",
+      "price": 562.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "LIS",
@@ -501,34 +525,10 @@
       "domestic": false,
       "departure_date": "2026-11-11",
       "return_date": "2026-11-17",
-      "price": 559.0,
+      "price": 568.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "PTY",
-      "city": "Panama City",
-      "country": "Panama",
-      "domestic": false,
-      "departure_date": "2026-10-19",
-      "return_date": "2026-10-25",
-      "price": 560.0,
-      "percent_off": null,
-      "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "HNL",
-      "city": "Honolulu",
-      "country": "United States",
-      "domestic": true,
-      "departure_date": "2026-10-21",
-      "return_date": "2026-10-27",
-      "price": 601.0,
-      "percent_off": null,
-      "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "FRA",
@@ -540,19 +540,19 @@
       "price": 671.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "BOG",
       "city": "Bogota",
       "country": "Colombia",
       "domestic": false,
-      "departure_date": "2026-11-10",
-      "return_date": "2026-11-16",
+      "departure_date": "2026-11-12",
+      "return_date": "2026-11-18",
       "price": 706.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "MAD",
@@ -564,7 +564,7 @@
       "price": 739.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "DUB",
@@ -576,7 +576,7 @@
       "price": 765.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "CDG",
@@ -588,7 +588,7 @@
       "price": 772.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "DOH",
@@ -600,7 +600,7 @@
       "price": 772.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "BCN",
@@ -612,7 +612,7 @@
       "price": 774.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "DXB",
@@ -624,7 +624,7 @@
       "price": 780.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "LHR",
@@ -633,46 +633,70 @@
       "domestic": false,
       "departure_date": "2026-10-14",
       "return_date": "2026-10-20",
-      "price": 788.0,
+      "price": 789.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "ZRH",
       "city": "Zurich",
       "country": "Switzerland",
       "domestic": false,
-      "departure_date": "2026-10-14",
-      "return_date": "2026-10-20",
+      "departure_date": "2026-11-11",
+      "return_date": "2026-11-17",
       "price": 789.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "FCO",
       "city": "Rome",
       "country": "Italy",
       "domestic": false,
-      "departure_date": "2026-11-15",
-      "return_date": "2026-11-21",
-      "price": 800.0,
+      "departure_date": "2026-11-10",
+      "return_date": "2026-11-16",
+      "price": 794.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "MUC",
       "city": "Munich",
       "country": "Germany",
       "domestic": false,
-      "departure_date": "2026-10-14",
-      "return_date": "2026-10-20",
+      "departure_date": "2026-11-11",
+      "return_date": "2026-11-17",
       "price": 816.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "ATH",
+      "city": "Athens",
+      "country": "Greece",
+      "domestic": false,
+      "departure_date": "2026-11-13",
+      "return_date": "2026-11-19",
+      "price": 825.0,
+      "percent_off": null,
+      "deal": false,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "AMS",
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "domestic": false,
+      "departure_date": "2026-10-14",
+      "return_date": "2026-10-20",
+      "price": 836.0,
+      "percent_off": null,
+      "deal": false,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "IST",
@@ -684,67 +708,55 @@
       "price": 846.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "ATH",
-      "city": "Athens",
-      "country": "Greece",
-      "domestic": false,
-      "departure_date": "2026-10-14",
-      "return_date": "2026-10-20",
-      "price": 850.0,
-      "percent_off": null,
-      "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "AMS",
-      "city": "Amsterdam",
-      "country": "Netherlands",
-      "domestic": false,
-      "departure_date": "2026-10-14",
-      "return_date": "2026-10-20",
-      "price": 857.0,
-      "percent_off": null,
-      "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "LIM",
       "city": "Lima",
       "country": "Peru",
       "domestic": false,
-      "departure_date": "2026-10-24",
-      "return_date": "2026-10-30",
+      "departure_date": "2026-11-11",
+      "return_date": "2026-11-17",
       "price": 867.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "SIN",
-      "city": "Singapore",
-      "country": "Singapore",
-      "domestic": false,
-      "departure_date": "2026-11-04",
-      "return_date": "2026-11-10",
-      "price": 916.0,
-      "percent_off": null,
-      "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "TLV",
       "city": "Tel Aviv",
       "country": "Israel",
       "domestic": false,
-      "departure_date": "2026-11-06",
-      "return_date": "2026-11-12",
+      "departure_date": "2026-11-15",
+      "return_date": "2026-11-21",
+      "price": 891.0,
+      "percent_off": null,
+      "deal": false,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "SIN",
+      "city": "Singapore",
+      "country": "Singapore",
+      "domestic": false,
+      "departure_date": "2026-10-28",
+      "return_date": "2026-11-03",
+      "price": 916.0,
+      "percent_off": null,
+      "deal": false,
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
+    },
+    {
+      "destination": "ICN",
+      "city": "Seoul",
+      "country": "South Korea",
+      "domestic": false,
+      "departure_date": "2026-11-11",
+      "return_date": "2026-11-17",
       "price": 928.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "HKG",
@@ -756,7 +768,7 @@
       "price": 943.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "CPT",
@@ -768,7 +780,7 @@
       "price": 1004.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "JNB",
@@ -780,7 +792,7 @@
       "price": 1004.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "GRU",
@@ -792,19 +804,7 @@
       "price": 1031.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
-    },
-    {
-      "destination": "ICN",
-      "city": "Seoul",
-      "country": "South Korea",
-      "domestic": false,
-      "departure_date": "2026-11-10",
-      "return_date": "2026-11-16",
-      "price": 1123.0,
-      "percent_off": null,
-      "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "SCL",
@@ -813,34 +813,34 @@
       "domestic": false,
       "departure_date": "2026-10-25",
       "return_date": "2026-10-31",
-      "price": 1150.0,
+      "price": 1149.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "EZE",
       "city": "Buenos Aires",
       "country": "Argentina",
       "domestic": false,
-      "departure_date": "2026-11-10",
-      "return_date": "2026-11-16",
+      "departure_date": "2026-11-12",
+      "return_date": "2026-11-18",
       "price": 1170.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     },
     {
       "destination": "NRT",
       "city": "Tokyo",
       "country": "Japan",
       "domestic": false,
-      "departure_date": "2026-11-03",
-      "return_date": "2026-11-09",
-      "price": 1203.0,
+      "departure_date": "2026-10-27",
+      "return_date": "2026-11-02",
+      "price": 1207.0,
       "percent_off": null,
       "deal": false,
-      "scanned_at": "2026-09-22T03:20:42.528886+00:00"
+      "scanned_at": "2026-09-22T15:57:19.821285+00:00"
     }
   ],
   "checked": 70,
