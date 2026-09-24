@@ -465,42 +465,42 @@ function bookingLinks(dest, dep, ret) {
 /* ============================================================
    Seasonal presets (only the ones our scan window can answer)
    ============================================================ */
+/* UGA's official academic calendar (reg.uga.edu) for 2026-2027. No-class
+   windows only, each with a day or two of slack for a realistic flight
+   (e.g. Thanksgiving break is officially Nov 23-27, but most students
+   leave the Friday before and return the Sunday after). Spring Break is
+   exact -- Mar 8-12, 2027, straight from the registrar. Update this list
+   once UGA publishes the 2027-2028 calendar; there's no formula that
+   predicts these, the registrar sets them each year. */
+const UGA_BREAKS = [
+  { id: 'fallbreak26', label: 'Fall Break', from: '2026-10-30', to: '2026-11-01' },
+  { id: 'mlk27', label: 'MLK Weekend', from: '2027-01-16', to: '2027-01-18' },
+  { id: 'thanksgiving26', label: 'Thanksgiving Break', from: '2026-11-20', to: '2026-11-30' },
+  { id: 'winter2627', label: 'Winter Break', from: '2026-12-10', to: '2027-01-10' },
+  { id: 'spring27', label: 'Spring Break', from: '2027-03-06', to: '2027-03-14' },
+  { id: 'summer27', label: 'Summer', from: '2027-05-05', to: '2027-08-14' },
+];
+
 function buildPresets() {
   const today = new Date(); today.setHours(0, 0, 0, 0);
-  const y = today.getFullYear();
   const all = [];
+  const add = (id, label, from, to) => all.push({ id, label, from, to });
+  const plus = n => { const d = new Date(today); d.setDate(d.getDate() + n); return iso(d); };
 
-  const add = (id, label, start, end) => all.push({ id, label, from: iso(start), to: iso(end) });
-  const plus = n => { const d = new Date(today); d.setDate(d.getDate() + n); return d; };
+  add('soon', 'Next 30 days', iso(today), plus(30));
+  add('60', 'Next 2 months', iso(today), plus(60));
+  UGA_BREAKS.forEach(b => add(b.id, b.label, b.from, b.to));
 
-  add('soon', 'Next 30 days', today, plus(30));
-  add('60', 'Next 2 months', today, plus(60));
-
-  // Thanksgiving: fourth Thursday of November
-  for (const yr of [y, y + 1]) {
-    const nov = new Date(yr, 10, 1);
-    const firstThu = 1 + ((4 - nov.getDay() + 7) % 7);
-    const tg = new Date(yr, 10, firstThu + 21);
-    add('tg' + yr, 'Thanksgiving', new Date(yr, 10, tg.getDate() - 7), new Date(yr, 10, tg.getDate() + 1));
-    add('winter' + yr, 'Winter break', new Date(yr, 11, 15), new Date(yr + 1, 0, 5));
-    add('spring' + (yr + 1), 'Spring break', new Date(yr + 1, 2, 1), new Date(yr + 1, 2, 31));
-    add('summer' + (yr + 1), 'Summer', new Date(yr + 1, 5, 1), new Date(yr + 1, 7, 31));
-  }
-
-  // Keep only presets that overlap dates we actually have fares for.
+  // Keep only presets that overlap dates we actually have fares for (which
+  // also drops anything already in the past, since the earliest fare is
+  // always a few days out from today).
   const deps = [];
   S.deals.forEach(d => optionsOf(d).forEach(o => { if (o.dep) deps.push(o.dep); }));
   if (!deps.length) return [];
   const lo = deps.reduce((a, b) => (b < a ? b : a));
   const hi = deps.reduce((a, b) => (b > a ? b : a));
 
-  const seen = new Set();
-  return all.filter(p => {
-    if (p.to < lo || p.from > hi) return false;
-    if (seen.has(p.label)) return false;
-    seen.add(p.label);
-    return true;
-  });
+  return all.filter(p => p.to >= lo && p.from <= hi);
 }
 
 /* ============================================================
@@ -850,7 +850,7 @@ function setupToolbar() {
   const presets = buildPresets();
   $('presets').innerHTML = presets.length
     ? `<span class="chips-label">When</span>` + presets.map(p =>
-        `<button class="chip" data-preset="${p.id}" data-from="${p.from}" data-to="${p.to}">${esc(p.label)}</button>`).join('')
+        `<button class="chip" data-preset="${p.id}" data-from="${p.from}" data-to="${p.to}" title="${fmtDate(p.from, true)} \u2013 ${fmtDate(p.to, true)}">${esc(p.label)}</button>`).join('')
     : '';
 
   const sync = () => {
